@@ -11,16 +11,59 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
     env_file:
       - .env
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
-  parser:
+  queue_setup:
     build: .
+    command: >
+      sh -c "
+        echo '⏳ Ожидаем запуск RabbitMQ...'
+        while ! nc -z rabbitmq 5672; do
+          sleep 2
+        done
+        sleep 5
+        echo '✅ RabbitMQ готов! Запускаем заполнение очереди...'
+        python queue_setup.py
+      "
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
     environment:
-      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+    env_file:
+      - .env
+    restart: "no"
+
+  parser:
+    build: .
+    command: >
+      sh -c "
+        echo '⏳ Парсер: Ожидаем RabbitMQ...'
+        while ! nc -z rabbitmq 5672; do
+          sleep 2
+        done
+        sleep 3
+        echo '✅ RabbitMQ готов! Запускаем парсер...'
+        python parser.py
+      "
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USER=${RABBITMQ_USER}
       - RABBITMQ_PASS=${RABBITMQ_PASS}
     env_file:

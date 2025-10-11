@@ -29,6 +29,12 @@ logging.basicConfig(
 
 class OzonSellerParser:
     def __init__(self):
+        self.request_count = 0
+        self.proxies = self.load_proxies_from_env()
+        self.current_proxy_index = 0
+        self.proxy_rotation_count = int(os.getenv('PROXY_ROTATION_COUNT', '10'))
+        self.use_proxies = os.getenv('USE_PROXIES', 'false').lower() == 'true'
+
         self.setup_driver()
         self.wait = WebDriverWait(self.driver, 15)
         self.data_dir = "data"
@@ -44,17 +50,51 @@ class OzonSellerParser:
             ])
             df.to_csv(self.csv_file, index=False, encoding='utf-8-sig')
 
+    def load_proxies_from_env(self):
+        """Загрузка прокси из переменных окружения"""
+        proxy_list = os.getenv('PROXY_LIST', '')
+        if proxy_list:
+            proxies = [p.strip() for p in proxy_list.split(',') if p.strip()]
+            logging.info(f"Загружено {len(proxies)} прокси из переменных окружения")
+            return proxies
+        else:
+            logging.info("Прокси не настроены, работаем без прокси")
+            return []
+
+    def rotate_proxy(self):
+        """Ротация прокси после заданного количества запросов"""
+        if not self.use_proxies or not self.proxies:
+            return
+
+        self.request_count += 1
+
+        if self.request_count % self.proxy_rotation_count == 0:
+            self.current_proxy_index = (self.current_proxy_index + 1) % len(self.proxies)
+            current_proxy = self.proxies[self.current_proxy_index]
+            logging.info(f"🔄 Смена прокси на: {current_proxy} (запрос #{self.request_count})")
+
+            # Перезапускаем драйвер с новым прокси
+            self.close_driver()
+            self.setup_driver()
+
     def setup_driver(self):
+        """Настройка драйвера с возможностью использования прокси"""
         chrome_options = Options()
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--disable-blink-features=AutomationControlled")
         chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
         chrome_options.add_experimental_option('useAutomationExtension', False)
-        chrome_options.add_argument("--user-data-dir=/tmp/user-data")
+
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument(
             "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+
+        # Добавляем прокси, если включено и есть доступные прокси
+        if self.use_proxies and self.proxies:
+            current_proxy = self.proxies[self.current_proxy_index]
+            chrome_options.add_argument(f'--proxy-server={current_proxy}')
+            logging.info(f"🔄 Используем прокси: {current_proxy}")
 
         # Автоматическая установка ChromeDriver через webdriver-manager
         service = Service(ChromeDriverManager().install())
@@ -70,11 +110,22 @@ class OzonSellerParser:
                 fix_hairline=True,
                 )
 
+    def close_driver(self):
+        """Аккуратное закрытие драйвера"""
+        if hasattr(self, 'driver'):
+            try:
+                self.driver.quit()
+            except Exception as e:
+                logging.warning(f"Ошибка при закрытии драйвера: {e}")
+
     def parse_seller(self, seller_id):
         url = f"https://www.ozon.ru/seller/{seller_id}"
         logging.info(f"Парсим продавца {seller_id}")
 
         try:
+            # Ротация прокси перед запросом (если включено)
+            self.rotate_proxy()
+
             self.driver.get(url)
             time.sleep(random.uniform(3, 5))  # Случайная задержка
 
@@ -99,6 +150,8 @@ class OzonSellerParser:
 
         except Exception as e:
             logging.error(f"Ошибка при парсинге {seller_id}: {str(e)}")
+            # При ошибке тоже меняем прокси
+            self.rotate_proxy()
             return None
 
     def extract_basic_info(self):
@@ -257,7 +310,7 @@ class OzonSellerParser:
         logging.info(f"Данные сохранены в {self.csv_file}")
 
     def close(self):
-        self.driver.quit()
+        self.close_driver()
 
 
 def callback(ch, method, properties, body):
@@ -287,7 +340,7 @@ def start_consumer():
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(
                 host=rabbitmq_host,
-                credentials=credentials,  # ← ДОБАВИТЬ АУТЕНТИФИКАЦИЮ
+                credentials=credentials,
                 heartbeat=600
             )
         )

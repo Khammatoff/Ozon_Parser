@@ -1,0 +1,1271 @@
+2025-10-11 20:48:24,059 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 20:48:24,061 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.3', 50504), raddr=('172.18.0.2', 5672)>
+2025-10-11 20:48:24,062 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x717375f3a210>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x717375f3a210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 20:48:24,067 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x717375f3a210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 20:48:24,068 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x717375f3a210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 20:48:24,068 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x717375f3a210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 20:48:24,069 - INFO - Created channel=1
+2025-10-11 20:48:24,079 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:23,130 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:23,132 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.4', 56208), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:23,133 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b716f10>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b716f10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:23,138 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b716f10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:23,139 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b716f10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:23,140 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b716f10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:23,141 - INFO - Created channel=1
+2025-10-11 21:04:23,147 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:23,148 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:23,149 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:23,464 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:23,748 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:23,800 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:23,801 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.5', 41922), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:23,802 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e02b0d0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e02b0d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:23,807 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e02b0d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:23,807 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e02b0d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:23,808 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e02b0d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:23,809 - INFO - Created channel=1
+2025-10-11 21:04:23,813 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:23,814 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:23,814 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:23,930 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:04:23,931 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:23,942 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:24,081 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:24,082 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.3', 43162), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:24,083 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d48b910>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d48b910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:24,088 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d48b910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:24,088 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d48b910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:24,089 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d48b910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:24,089 - INFO - Created channel=1
+2025-10-11 21:04:24,094 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:24,094 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:24,095 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:24,132 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:24,185 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:24,302 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:04:24,302 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:24,366 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:24,403 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:04:24,407 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:04:24,408 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:04:24,539 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:04:24,540 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:24,787 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:04:24,792 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:04:24,792 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:04:25,008 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:04:25,013 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:04:25,014 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:04:25,031 - INFO - Driver downloading response is 200
+2025-10-11 21:04:25,414 - INFO - Driver downloading response is 200
+2025-10-11 21:04:25,632 - INFO - Driver downloading response is 200
+2025-10-11 21:04:27,122 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:27,467 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:04:27,913 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:28,087 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5bed000e94ca <unknown>
+#1 0x5becffb68566 <unknown>
+#2 0x5becffba3b4c <unknown>
+#3 0x5becffb9f7c4 <unknown>
+#4 0x5becffbeebd3 <unknown>
+#5 0x5becffbee286 <unknown>
+#6 0x5becffbe0403 <unknown>
+#7 0x5becffbacb02 <unknown>
+#8 0x5becffbad7c1 <unknown>
+#9 0x5bed000ad298 <unknown>
+#10 0x5bed000b10ff <unknown>
+#11 0x5bed00094729 <unknown>
+#12 0x5bed000b1ca5 <unknown>
+#13 0x5bed00079f8f <unknown>
+#14 0x5bed000d6308 <unknown>
+#15 0x5bed000d64e3 <unknown>
+#16 0x5bed000e8463 <unknown>
+#17 0x71a896d6bb7b <unknown>
+
+2025-10-11 21:04:28,252 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:04:28,380 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:28,678 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:04:28,873 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x639d9f9cc4ca <unknown>
+#1 0x639d9f44b566 <unknown>
+#2 0x639d9f486b4c <unknown>
+#3 0x639d9f4827c4 <unknown>
+#4 0x639d9f4d1bd3 <unknown>
+#5 0x639d9f4d1286 <unknown>
+#6 0x639d9f4c3403 <unknown>
+#7 0x639d9f48fb02 <unknown>
+#8 0x639d9f4907c1 <unknown>
+#9 0x639d9f990298 <unknown>
+#10 0x639d9f9940ff <unknown>
+#11 0x639d9f977729 <unknown>
+#12 0x639d9f994ca5 <unknown>
+#13 0x639d9f95cf8f <unknown>
+#14 0x639d9f9b9308 <unknown>
+#15 0x639d9f9b94e3 <unknown>
+#16 0x639d9f9cb463 <unknown>
+#17 0x71d41743ab7b <unknown>
+
+2025-10-11 21:04:29,297 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x653c591fd4ca <unknown>
+#1 0x653c58c7c566 <unknown>
+#2 0x653c58cb7b4c <unknown>
+#3 0x653c58cb37c4 <unknown>
+#4 0x653c58d02bd3 <unknown>
+#5 0x653c58d02286 <unknown>
+#6 0x653c58cf4403 <unknown>
+#7 0x653c58cc0b02 <unknown>
+#8 0x653c58cc17c1 <unknown>
+#9 0x653c591c1298 <unknown>
+#10 0x653c591c50ff <unknown>
+#11 0x653c591a8729 <unknown>
+#12 0x653c591c5ca5 <unknown>
+#13 0x653c5918df8f <unknown>
+#14 0x653c591ea308 <unknown>
+#15 0x653c591ea4e3 <unknown>
+#16 0x653c591fc463 <unknown>
+#17 0x767a1a495b7b <unknown>
+
+2025-10-11 21:04:38,093 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:38,095 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.4', 53410), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:38,096 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c41450>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c41450> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:38,100 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c41450> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:38,100 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c41450> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:38,101 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c41450> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:38,101 - INFO - Created channel=1
+2025-10-11 21:04:38,104 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:38,104 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:38,105 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:38,213 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:38,386 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:38,551 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:04:38,874 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:38,875 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.5', 55838), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:38,876 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c551410>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c551410> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:38,880 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c551410> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:38,880 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c551410> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:38,881 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c551410> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:38,881 - INFO - Created channel=1
+2025-10-11 21:04:38,884 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:38,885 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:38,886 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:38,953 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:39,127 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:39,167 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5c4435c0c4ca <unknown>
+#1 0x5c443568b566 <unknown>
+#2 0x5c44356c6b4c <unknown>
+#3 0x5c44356c27c4 <unknown>
+#4 0x5c4435711bd3 <unknown>
+#5 0x5c4435711286 <unknown>
+#6 0x5c4435703403 <unknown>
+#7 0x5c44356cfb02 <unknown>
+#8 0x5c44356d07c1 <unknown>
+#9 0x5c4435bd0298 <unknown>
+#10 0x5c4435bd40ff <unknown>
+#11 0x5c4435bb7729 <unknown>
+#12 0x5c4435bd4ca5 <unknown>
+#13 0x5c4435b9cf8f <unknown>
+#14 0x5c4435bf9308 <unknown>
+#15 0x5c4435bf94e3 <unknown>
+#16 0x5c4435c0b463 <unknown>
+#17 0x766fd5856b7b <unknown>
+
+2025-10-11 21:04:39,292 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:04:39,298 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:39,299 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.3', 59232), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:39,300 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376b1590>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376b1590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:39,304 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376b1590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:39,305 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376b1590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:39,305 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376b1590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:39,305 - INFO - Created channel=1
+2025-10-11 21:04:39,308 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:39,308 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:39,309 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:39,372 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:39,560 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:39,725 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:04:39,909 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5cb8321864ca <unknown>
+#1 0x5cb831c05566 <unknown>
+#2 0x5cb831c40b4c <unknown>
+#3 0x5cb831c3c7c4 <unknown>
+#4 0x5cb831c8bbd3 <unknown>
+#5 0x5cb831c8b286 <unknown>
+#6 0x5cb831c7d403 <unknown>
+#7 0x5cb831c49b02 <unknown>
+#8 0x5cb831c4a7c1 <unknown>
+#9 0x5cb83214a298 <unknown>
+#10 0x5cb83214e0ff <unknown>
+#11 0x5cb832131729 <unknown>
+#12 0x5cb83214eca5 <unknown>
+#13 0x5cb832116f8f <unknown>
+#14 0x5cb832173308 <unknown>
+#15 0x5cb8321734e3 <unknown>
+#16 0x5cb832185463 <unknown>
+#17 0x7bb75b81db7b <unknown>
+
+2025-10-11 21:04:40,342 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x64d4ea0574ca <unknown>
+#1 0x64d4e9ad6566 <unknown>
+#2 0x64d4e9b11b4c <unknown>
+#3 0x64d4e9b0d7c4 <unknown>
+#4 0x64d4e9b5cbd3 <unknown>
+#5 0x64d4e9b5c286 <unknown>
+#6 0x64d4e9b4e403 <unknown>
+#7 0x64d4e9b1ab02 <unknown>
+#8 0x64d4e9b1b7c1 <unknown>
+#9 0x64d4ea01b298 <unknown>
+#10 0x64d4ea01f0ff <unknown>
+#11 0x64d4ea002729 <unknown>
+#12 0x64d4ea01fca5 <unknown>
+#13 0x64d4e9fe7f8f <unknown>
+#14 0x64d4ea044308 <unknown>
+#15 0x64d4ea0444e3 <unknown>
+#16 0x64d4ea056463 <unknown>
+#17 0x75487a0edb7b <unknown>
+
+2025-10-11 21:04:49,170 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:49,171 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.4', 49706), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:49,172 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b733590>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b733590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:49,176 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b733590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:49,176 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b733590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:49,177 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f0b733590> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:49,177 - INFO - Created channel=1
+2025-10-11 21:04:49,181 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:49,181 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:49,181 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:49,254 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:49,432 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:49,602 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:04:49,911 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:49,912 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.5', 47636), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:49,913 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e061f90>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e061f90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:49,917 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e061f90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:49,918 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e061f90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:49,918 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92e061f90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:49,919 - INFO - Created channel=1
+2025-10-11 21:04:49,922 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:49,922 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:49,923 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:49,987 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:50,154 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:50,218 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x58b7fe6074ca <unknown>
+#1 0x58b7fe086566 <unknown>
+#2 0x58b7fe0c1b4c <unknown>
+#3 0x58b7fe0bd7c4 <unknown>
+#4 0x58b7fe10cbd3 <unknown>
+#5 0x58b7fe10c286 <unknown>
+#6 0x58b7fe0fe403 <unknown>
+#7 0x58b7fe0cab02 <unknown>
+#8 0x58b7fe0cb7c1 <unknown>
+#9 0x58b7fe5cb298 <unknown>
+#10 0x58b7fe5cf0ff <unknown>
+#11 0x58b7fe5b2729 <unknown>
+#12 0x58b7fe5cfca5 <unknown>
+#13 0x58b7fe597f8f <unknown>
+#14 0x58b7fe5f4308 <unknown>
+#15 0x58b7fe5f44e3 <unknown>
+#16 0x58b7fe606463 <unknown>
+#17 0x7c3e37982b7b <unknown>
+
+2025-10-11 21:04:50,325 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:04:50,344 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:04:50,346 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.3', 41984), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:04:50,348 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d2da210>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d2da210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:04:50,352 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d2da210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:50,353 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d2da210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:50,353 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff3d2da210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:04:50,354 - INFO - Created channel=1
+2025-10-11 21:04:50,358 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:04:50,359 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:04:50,360 - INFO - ====== WebDriver manager ======
+2025-10-11 21:04:50,437 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:50,616 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:04:50,778 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:04:50,941 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x64c6b263d4ca <unknown>
+#1 0x64c6b20bc566 <unknown>
+#2 0x64c6b20f7b4c <unknown>
+#3 0x64c6b20f37c4 <unknown>
+#4 0x64c6b2142bd3 <unknown>
+#5 0x64c6b2142286 <unknown>
+#6 0x64c6b2134403 <unknown>
+#7 0x64c6b2100b02 <unknown>
+#8 0x64c6b21017c1 <unknown>
+#9 0x64c6b2601298 <unknown>
+#10 0x64c6b26050ff <unknown>
+#11 0x64c6b25e8729 <unknown>
+#12 0x64c6b2605ca5 <unknown>
+#13 0x64c6b25cdf8f <unknown>
+#14 0x64c6b262a308 <unknown>
+#15 0x64c6b262a4e3 <unknown>
+#16 0x64c6b263c463 <unknown>
+#17 0x792813398b7b <unknown>
+
+2025-10-11 21:04:51,394 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x63c90452f4ca <unknown>
+#1 0x63c903fae566 <unknown>
+#2 0x63c903fe9b4c <unknown>
+#3 0x63c903fe57c4 <unknown>
+#4 0x63c904034bd3 <unknown>
+#5 0x63c904034286 <unknown>
+#6 0x63c904026403 <unknown>
+#7 0x63c903ff2b02 <unknown>
+#8 0x63c903ff37c1 <unknown>
+#9 0x63c9044f3298 <unknown>
+#10 0x63c9044f70ff <unknown>
+#11 0x63c9044da729 <unknown>
+#12 0x63c9044f7ca5 <unknown>
+#13 0x63c9044bff8f <unknown>
+#14 0x63c90451c308 <unknown>
+#15 0x63c90451c4e3 <unknown>
+#16 0x63c90452e463 <unknown>
+#17 0x75b1e8ca1b7b <unknown>
+
+2025-10-11 21:05:00,221 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:05:00,222 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.4', 35604), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:05:00,223 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09baca50>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09baca50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:05:00,227 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09baca50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:00,227 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09baca50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:00,228 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09baca50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:00,228 - INFO - Created channel=1
+2025-10-11 21:05:00,231 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:05:00,232 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:05:00,232 - INFO - ====== WebDriver manager ======
+2025-10-11 21:05:00,301 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:05:00,474 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:05:00,644 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:05:00,943 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:05:00,944 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.5', 48788), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:05:00,945 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c4be5d0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c4be5d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:05:00,949 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c4be5d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:00,949 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c4be5d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:00,949 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x71f92c4be5d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:00,950 - INFO - Created channel=1
+2025-10-11 21:05:00,953 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:05:01,261 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x57b7272034ca <unknown>
+#1 0x57b726c82566 <unknown>
+#2 0x57b726cbdb4c <unknown>
+#3 0x57b726cb97c4 <unknown>
+#4 0x57b726d08bd3 <unknown>
+#5 0x57b726d08286 <unknown>
+#6 0x57b726cfa403 <unknown>
+#7 0x57b726cc6b02 <unknown>
+#8 0x57b726cc77c1 <unknown>
+#9 0x57b7271c7298 <unknown>
+#10 0x57b7271cb0ff <unknown>
+#11 0x57b7271ae729 <unknown>
+#12 0x57b7271cbca5 <unknown>
+#13 0x57b727193f8f <unknown>
+#14 0x57b7271f0308 <unknown>
+#15 0x57b7271f04e3 <unknown>
+#16 0x57b727202463 <unknown>
+#17 0x747fc723bb7b <unknown>
+
+2025-10-11 21:05:01,398 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:05:01,399 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.3', 59772), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:05:01,401 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376a9250>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376a9250> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:05:01,405 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376a9250> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:01,405 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376a9250> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:01,406 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x76ff376a9250> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:01,406 - INFO - Created channel=1
+2025-10-11 21:05:01,409 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:05:11,262 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:05:11,263 - INFO - Socket connected: <socket.socket fd=23, family=2, type=1, proto=6, laddr=('172.18.0.4', 49194), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:05:11,264 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c2ff90>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c2ff90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:05:11,268 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c2ff90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:11,268 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c2ff90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:11,269 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7b4f09c2ff90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:05:11,269 - INFO - Created channel=1
+2025-10-11 21:05:11,272 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:07:54,055 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:07:54,055 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:07:54,056 - INFO - ====== WebDriver manager ======
+2025-10-11 21:07:54,056 - INFO - ====== WebDriver manager ======
+2025-10-11 21:08:07,296 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:08:07,297 - ERROR - Socket failed to connect: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.4', 58506)>; error=111 (Connection refused)
+2025-10-11 21:08:07,298 - ERROR - TCP Connection attempt failed: ConnectionRefusedError(111, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.18.0.2', 5672))
+2025-10-11 21:08:07,299 - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused')
+2025-10-11 21:08:07,300 - ERROR - AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None.
+2025-10-11 21:08:07,301 - ERROR - AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:08:07,301 - ERROR - Connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:08:07,301 - ERROR - Error in _create_connection().
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/pika/adapters/blocking_connection.py", line 451, in _create_connection
+    raise self._reap_last_connection_workflow_error(error)
+pika.exceptions.AMQPConnectionError
+2025-10-11 21:08:07,304 - ERROR - Ошибка подключения к RabbitMQ: 
+2025-10-11 21:08:07,572 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:08:07,574 - ERROR - Socket failed to connect: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.5', 45370)>; error=111 (Connection refused)
+2025-10-11 21:08:07,575 - ERROR - TCP Connection attempt failed: ConnectionRefusedError(111, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.18.0.2', 5672))
+2025-10-11 21:08:07,575 - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused')
+2025-10-11 21:08:07,576 - ERROR - AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None.
+2025-10-11 21:08:07,577 - ERROR - AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:08:07,577 - ERROR - Connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:08:07,577 - ERROR - Error in _create_connection().
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/pika/adapters/blocking_connection.py", line 451, in _create_connection
+    raise self._reap_last_connection_workflow_error(error)
+pika.exceptions.AMQPConnectionError
+2025-10-11 21:08:07,579 - ERROR - Ошибка подключения к RabbitMQ: 
+2025-10-11 21:08:07,805 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:08:07,806 - ERROR - Socket failed to connect: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.6', 56592)>; error=111 (Connection refused)
+2025-10-11 21:08:07,807 - ERROR - TCP Connection attempt failed: ConnectionRefusedError(111, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.18.0.2', 5672))
+2025-10-11 21:08:07,807 - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused')
+2025-10-11 21:08:07,808 - ERROR - AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None.
+2025-10-11 21:08:07,808 - ERROR - AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:08:07,808 - ERROR - Connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:08:07,809 - ERROR - Error in _create_connection().
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/pika/adapters/blocking_connection.py", line 451, in _create_connection
+    raise self._reap_last_connection_workflow_error(error)
+pika.exceptions.AMQPConnectionError
+2025-10-11 21:08:07,810 - ERROR - Ошибка подключения к RabbitMQ: 
+2025-10-11 21:10:47,856 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:10:47,857 - ERROR - Socket failed to connect: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.3', 48436)>; error=111 (Connection refused)
+2025-10-11 21:10:47,858 - ERROR - TCP Connection attempt failed: ConnectionRefusedError(111, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.18.0.2', 5672))
+2025-10-11 21:10:47,858 - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused')
+2025-10-11 21:10:47,859 - ERROR - AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None.
+2025-10-11 21:10:47,860 - ERROR - AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:10:47,860 - ERROR - Connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:10:47,860 - ERROR - Error in _create_connection().
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/pika/adapters/blocking_connection.py", line 451, in _create_connection
+    raise self._reap_last_connection_workflow_error(error)
+pika.exceptions.AMQPConnectionError
+2025-10-11 21:10:47,863 - ERROR - Ошибка подключения к RabbitMQ: 
+2025-10-11 21:10:48,114 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:10:48,115 - ERROR - Socket failed to connect: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.4', 44488)>; error=111 (Connection refused)
+2025-10-11 21:10:48,116 - ERROR - TCP Connection attempt failed: ConnectionRefusedError(111, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.18.0.2', 5672))
+2025-10-11 21:10:48,117 - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused')
+2025-10-11 21:10:48,118 - ERROR - AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None.
+2025-10-11 21:10:48,118 - ERROR - AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:10:48,119 - ERROR - Connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:10:48,120 - ERROR - Error in _create_connection().
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/pika/adapters/blocking_connection.py", line 451, in _create_connection
+    raise self._reap_last_connection_workflow_error(error)
+pika.exceptions.AMQPConnectionError
+2025-10-11 21:10:48,121 - ERROR - Ошибка подключения к RabbitMQ: 
+2025-10-11 21:10:48,335 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:10:48,336 - ERROR - Socket failed to connect: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.5', 56694)>; error=111 (Connection refused)
+2025-10-11 21:10:48,336 - ERROR - TCP Connection attempt failed: ConnectionRefusedError(111, 'Connection refused'); dest=(<AddressFamily.AF_INET: 2>, <SocketKind.SOCK_STREAM: 1>, 6, '', ('172.18.0.2', 5672))
+2025-10-11 21:10:48,337 - ERROR - AMQPConnector - reporting failure: AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused')
+2025-10-11 21:10:48,337 - ERROR - AMQP connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None.
+2025-10-11 21:10:48,337 - ERROR - AMQPConnectionWorkflow - reporting failure: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:10:48,338 - ERROR - Connection workflow failed: AMQPConnectionWorkflowFailed: 1 exceptions in all; last exception - AMQPConnectorSocketConnectError: ConnectionRefusedError(111, 'Connection refused'); first exception - None
+2025-10-11 21:10:48,338 - ERROR - Error in _create_connection().
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/pika/adapters/blocking_connection.py", line 451, in _create_connection
+    raise self._reap_last_connection_workflow_error(error)
+pika.exceptions.AMQPConnectionError
+2025-10-11 21:10:48,339 - ERROR - Ошибка подключения к RabbitMQ: 
+2025-10-11 21:12:55,249 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:12:55,250 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.4', 46164), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:12:55,252 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb01942bd0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb01942bd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:12:55,256 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb01942bd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,257 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb01942bd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,258 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb01942bd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,259 - INFO - Created channel=1
+2025-10-11 21:12:55,269 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:12:55,495 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:12:55,495 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.5', 41966), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:12:55,496 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011eace2990>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011eace2990> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:12:55,500 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011eace2990> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,501 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011eace2990> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,501 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011eace2990> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,502 - INFO - Created channel=1
+2025-10-11 21:12:55,505 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:12:55,684 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:12:55,685 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.6', 49704), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:12:55,686 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff78ddae50>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff78ddae50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:12:55,690 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff78ddae50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,691 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff78ddae50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,691 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff78ddae50> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:12:55,692 - INFO - Created channel=1
+2025-10-11 21:12:55,695 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:12:56,688 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:12:56,689 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:12:56,689 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:12:56,689 - INFO - ====== WebDriver manager ======
+2025-10-11 21:12:56,689 - INFO - ====== WebDriver manager ======
+2025-10-11 21:12:56,690 - INFO - ====== WebDriver manager ======
+2025-10-11 21:12:56,802 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:56,804 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:56,805 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:57,008 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:57,024 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:57,028 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:57,172 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:12:57,173 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:57,194 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:12:57,196 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:57,213 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:12:57,213 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:12:57,638 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:12:57,644 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:12:57,646 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:12:57,677 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:12:57,684 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:12:57,685 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:12:57,702 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:12:57,708 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:12:57,709 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:12:58,284 - INFO - Driver downloading response is 200
+2025-10-11 21:12:58,313 - INFO - Driver downloading response is 200
+2025-10-11 21:12:58,328 - INFO - Driver downloading response is 200
+2025-10-11 21:13:00,669 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:00,913 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:00,980 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:13:01,214 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:13:01,510 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:01,602 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x594732f564ca <unknown>
+#1 0x5947329d5566 <unknown>
+#2 0x594732a10b4c <unknown>
+#3 0x594732a0c7c4 <unknown>
+#4 0x594732a5bbd3 <unknown>
+#5 0x594732a5b286 <unknown>
+#6 0x594732a4d403 <unknown>
+#7 0x594732a19b02 <unknown>
+#8 0x594732a1a7c1 <unknown>
+#9 0x594732f1a298 <unknown>
+#10 0x594732f1e0ff <unknown>
+#11 0x594732f01729 <unknown>
+#12 0x594732f1eca5 <unknown>
+#13 0x594732ee6f8f <unknown>
+#14 0x594732f43308 <unknown>
+#15 0x594732f434e3 <unknown>
+#16 0x594732f55463 <unknown>
+#17 0x741051353b7b <unknown>
+
+2025-10-11 21:13:01,800 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:13:01,833 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x61c3f76f74ca <unknown>
+#1 0x61c3f7176566 <unknown>
+#2 0x61c3f71b1b4c <unknown>
+#3 0x61c3f71ad7c4 <unknown>
+#4 0x61c3f71fcbd3 <unknown>
+#5 0x61c3f71fc286 <unknown>
+#6 0x61c3f71ee403 <unknown>
+#7 0x61c3f71bab02 <unknown>
+#8 0x61c3f71bb7c1 <unknown>
+#9 0x61c3f76bb298 <unknown>
+#10 0x61c3f76bf0ff <unknown>
+#11 0x61c3f76a2729 <unknown>
+#12 0x61c3f76bfca5 <unknown>
+#13 0x61c3f7687f8f <unknown>
+#14 0x61c3f76e4308 <unknown>
+#15 0x61c3f76e44e3 <unknown>
+#16 0x61c3f76f6463 <unknown>
+#17 0x73ee18736b7b <unknown>
+
+2025-10-11 21:13:02,426 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x597216da44ca <unknown>
+#1 0x597216823566 <unknown>
+#2 0x59721685eb4c <unknown>
+#3 0x59721685a7c4 <unknown>
+#4 0x5972168a9bd3 <unknown>
+#5 0x5972168a9286 <unknown>
+#6 0x59721689b403 <unknown>
+#7 0x597216867b02 <unknown>
+#8 0x5972168687c1 <unknown>
+#9 0x597216d68298 <unknown>
+#10 0x597216d6c0ff <unknown>
+#11 0x597216d4f729 <unknown>
+#12 0x597216d6cca5 <unknown>
+#13 0x597216d34f8f <unknown>
+#14 0x597216d91308 <unknown>
+#15 0x597216d914e3 <unknown>
+#16 0x597216da3463 <unknown>
+#17 0x7f1e518fbb7b <unknown>
+
+2025-10-11 21:13:11,604 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:11,605 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.4', 58462), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:11,606 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd8d910>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd8d910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:11,609 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd8d910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:11,610 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd8d910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:11,610 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd8d910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:11,611 - INFO - Created channel=1
+2025-10-11 21:13:11,614 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:11,614 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:13:11,615 - INFO - ====== WebDriver manager ======
+2025-10-11 21:13:11,691 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:11,834 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:11,835 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.5', 42922), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:11,836 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e91dd650>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e91dd650> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:11,839 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e91dd650> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:11,840 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e91dd650> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:11,840 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e91dd650> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:11,841 - INFO - Created channel=1
+2025-10-11 21:13:11,843 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:11,844 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:13:11,844 - INFO - ====== WebDriver manager ======
+2025-10-11 21:13:11,888 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:11,914 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:12,073 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:13:12,089 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:12,260 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:13:12,459 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:12,460 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.6', 45860), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:12,461 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73245910>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73245910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:12,464 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73245910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:12,465 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73245910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:12,465 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73245910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:12,466 - INFO - Created channel=1
+2025-10-11 21:13:12,469 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:12,469 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:13:12,469 - INFO - ====== WebDriver manager ======
+2025-10-11 21:13:12,534 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:12,688 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x56e5535b84ca <unknown>
+#1 0x56e553037566 <unknown>
+#2 0x56e553072b4c <unknown>
+#3 0x56e55306e7c4 <unknown>
+#4 0x56e5530bdbd3 <unknown>
+#5 0x56e5530bd286 <unknown>
+#6 0x56e5530af403 <unknown>
+#7 0x56e55307bb02 <unknown>
+#8 0x56e55307c7c1 <unknown>
+#9 0x56e55357c298 <unknown>
+#10 0x56e5535800ff <unknown>
+#11 0x56e553563729 <unknown>
+#12 0x56e553580ca5 <unknown>
+#13 0x56e553548f8f <unknown>
+#14 0x56e5535a5308 <unknown>
+#15 0x56e5535a54e3 <unknown>
+#16 0x56e5535b7463 <unknown>
+#17 0x7100f5d9bb7b <unknown>
+
+2025-10-11 21:13:12,704 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:12,870 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:13:12,877 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x561d1605d4ca <unknown>
+#1 0x561d15adc566 <unknown>
+#2 0x561d15b17b4c <unknown>
+#3 0x561d15b137c4 <unknown>
+#4 0x561d15b62bd3 <unknown>
+#5 0x561d15b62286 <unknown>
+#6 0x561d15b54403 <unknown>
+#7 0x561d15b20b02 <unknown>
+#8 0x561d15b217c1 <unknown>
+#9 0x561d16021298 <unknown>
+#10 0x561d160250ff <unknown>
+#11 0x561d16008729 <unknown>
+#12 0x561d16025ca5 <unknown>
+#13 0x561d15fedf8f <unknown>
+#14 0x561d1604a308 <unknown>
+#15 0x561d1604a4e3 <unknown>
+#16 0x561d1605c463 <unknown>
+#17 0x74ec303ebb7b <unknown>
+
+2025-10-11 21:13:13,486 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5d6a957d34ca <unknown>
+#1 0x5d6a95252566 <unknown>
+#2 0x5d6a9528db4c <unknown>
+#3 0x5d6a952897c4 <unknown>
+#4 0x5d6a952d8bd3 <unknown>
+#5 0x5d6a952d8286 <unknown>
+#6 0x5d6a952ca403 <unknown>
+#7 0x5d6a95296b02 <unknown>
+#8 0x5d6a952977c1 <unknown>
+#9 0x5d6a95797298 <unknown>
+#10 0x5d6a9579b0ff <unknown>
+#11 0x5d6a9577e729 <unknown>
+#12 0x5d6a9579bca5 <unknown>
+#13 0x5d6a95763f8f <unknown>
+#14 0x5d6a957c0308 <unknown>
+#15 0x5d6a957c04e3 <unknown>
+#16 0x5d6a957d2463 <unknown>
+#17 0x72113371eb7b <unknown>
+
+2025-10-11 21:13:22,700 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:22,703 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.4', 51892), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:22,704 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0195ddd0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0195ddd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:22,709 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0195ddd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:22,712 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0195ddd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:22,713 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0195ddd0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:22,714 - INFO - Created channel=1
+2025-10-11 21:13:22,719 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:22,719 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:13:22,720 - INFO - ====== WebDriver manager ======
+2025-10-11 21:13:22,823 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:22,880 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:22,881 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.5', 48816), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:22,882 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011ead1e3d0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011ead1e3d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:22,887 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011ead1e3d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:22,887 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011ead1e3d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:22,888 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011ead1e3d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:22,889 - INFO - Created channel=1
+2025-10-11 21:13:22,892 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:22,893 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:13:22,893 - INFO - ====== WebDriver manager ======
+2025-10-11 21:13:22,993 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:23,009 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:23,158 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:23,209 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:13:23,335 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:13:23,489 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:23,490 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.6', 43438), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:23,491 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73233710>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73233710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:23,495 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73233710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:23,496 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73233710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:23,496 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73233710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:23,497 - INFO - Created channel=1
+2025-10-11 21:13:23,501 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:23,502 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:13:23,502 - INFO - ====== WebDriver manager ======
+2025-10-11 21:13:23,581 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:23,774 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:23,823 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x582d95fa44ca <unknown>
+#1 0x582d95a23566 <unknown>
+#2 0x582d95a5eb4c <unknown>
+#3 0x582d95a5a7c4 <unknown>
+#4 0x582d95aa9bd3 <unknown>
+#5 0x582d95aa9286 <unknown>
+#6 0x582d95a9b403 <unknown>
+#7 0x582d95a67b02 <unknown>
+#8 0x582d95a687c1 <unknown>
+#9 0x582d95f68298 <unknown>
+#10 0x582d95f6c0ff <unknown>
+#11 0x582d95f4f729 <unknown>
+#12 0x582d95f6cca5 <unknown>
+#13 0x582d95f34f8f <unknown>
+#14 0x582d95f91308 <unknown>
+#15 0x582d95f914e3 <unknown>
+#16 0x582d95fa3463 <unknown>
+#17 0x7f89ffffab7b <unknown>
+
+2025-10-11 21:13:23,953 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:13:23,968 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x58f7b6d564ca <unknown>
+#1 0x58f7b67d5566 <unknown>
+#2 0x58f7b6810b4c <unknown>
+#3 0x58f7b680c7c4 <unknown>
+#4 0x58f7b685bbd3 <unknown>
+#5 0x58f7b685b286 <unknown>
+#6 0x58f7b684d403 <unknown>
+#7 0x58f7b6819b02 <unknown>
+#8 0x58f7b681a7c1 <unknown>
+#9 0x58f7b6d1a298 <unknown>
+#10 0x58f7b6d1e0ff <unknown>
+#11 0x58f7b6d01729 <unknown>
+#12 0x58f7b6d1eca5 <unknown>
+#13 0x58f7b6ce6f8f <unknown>
+#14 0x58f7b6d43308 <unknown>
+#15 0x58f7b6d434e3 <unknown>
+#16 0x58f7b6d55463 <unknown>
+#17 0x71bb6aa43b7b <unknown>
+
+2025-10-11 21:13:24,569 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x585e59da54ca <unknown>
+#1 0x585e59824566 <unknown>
+#2 0x585e5985fb4c <unknown>
+#3 0x585e5985b7c4 <unknown>
+#4 0x585e598aabd3 <unknown>
+#5 0x585e598aa286 <unknown>
+#6 0x585e5989c403 <unknown>
+#7 0x585e59868b02 <unknown>
+#8 0x585e598697c1 <unknown>
+#9 0x585e59d69298 <unknown>
+#10 0x585e59d6d0ff <unknown>
+#11 0x585e59d50729 <unknown>
+#12 0x585e59d6dca5 <unknown>
+#13 0x585e59d35f8f <unknown>
+#14 0x585e59d92308 <unknown>
+#15 0x585e59d924e3 <unknown>
+#16 0x585e59da4463 <unknown>
+#17 0x7e29a0de5b7b <unknown>
+
+2025-10-11 21:13:33,826 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:33,827 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.4', 46814), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:33,828 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd049d0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd049d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:33,832 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd049d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:33,832 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd049d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:33,833 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bafbd049d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:33,833 - INFO - Created channel=1
+2025-10-11 21:13:33,836 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:33,836 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:13:33,836 - INFO - ====== WebDriver manager ======
+2025-10-11 21:13:33,908 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:33,971 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:33,972 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.5', 37666), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:33,973 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e9154910>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e9154910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:33,976 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e9154910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:33,976 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e9154910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:33,977 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7011e9154910> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:33,978 - INFO - Created channel=1
+2025-10-11 21:13:33,981 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:34,091 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:13:34,284 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:13:34,572 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:34,573 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.6', 59394), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:34,574 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73225e10>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73225e10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:34,578 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73225e10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:34,578 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73225e10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:34,579 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77ff73225e10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:34,579 - INFO - Created channel=1
+2025-10-11 21:13:34,583 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:13:34,905 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x63cf49b7a4ca <unknown>
+#1 0x63cf495f9566 <unknown>
+#2 0x63cf49634b4c <unknown>
+#3 0x63cf496307c4 <unknown>
+#4 0x63cf4967fbd3 <unknown>
+#5 0x63cf4967f286 <unknown>
+#6 0x63cf49671403 <unknown>
+#7 0x63cf4963db02 <unknown>
+#8 0x63cf4963e7c1 <unknown>
+#9 0x63cf49b3e298 <unknown>
+#10 0x63cf49b420ff <unknown>
+#11 0x63cf49b25729 <unknown>
+#12 0x63cf49b42ca5 <unknown>
+#13 0x63cf49b0af8f <unknown>
+#14 0x63cf49b67308 <unknown>
+#15 0x63cf49b674e3 <unknown>
+#16 0x63cf49b79463 <unknown>
+#17 0x71e315a7eb7b <unknown>
+
+2025-10-11 21:13:44,905 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:13:44,906 - INFO - Socket connected: <socket.socket fd=23, family=2, type=1, proto=6, laddr=('172.18.0.4', 52404), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:13:44,907 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0197eb90>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0197eb90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:13:44,911 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0197eb90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:44,911 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0197eb90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:44,912 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x70bb0197eb90> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:13:44,912 - INFO - Created channel=1
+2025-10-11 21:13:44,915 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:16:14,743 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:16:14,744 - INFO - ====== WebDriver manager ======
+2025-10-11 21:16:14,858 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:16:15,065 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:16:15,272 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:16:15,887 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5ccafdce54ca <unknown>
+#1 0x5ccafd764566 <unknown>
+#2 0x5ccafd79fb4c <unknown>
+#3 0x5ccafd79b7c4 <unknown>
+#4 0x5ccafd7eabd3 <unknown>
+#5 0x5ccafd7ea286 <unknown>
+#6 0x5ccafd7dc403 <unknown>
+#7 0x5ccafd7a8b02 <unknown>
+#8 0x5ccafd7a97c1 <unknown>
+#9 0x5ccafdca9298 <unknown>
+#10 0x5ccafdcad0ff <unknown>
+#11 0x5ccafdc90729 <unknown>
+#12 0x5ccafdcadca5 <unknown>
+#13 0x5ccafdc75f8f <unknown>
+#14 0x5ccafdcd2308 <unknown>
+#15 0x5ccafdcd24e3 <unknown>
+#16 0x5ccafdce4463 <unknown>
+#17 0x7b5ae7150b7b <unknown>
+
+2025-10-11 21:17:13,902 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:13,904 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.4', 37746), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:13,905 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980fc3150>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980fc3150> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:13,910 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980fc3150> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:13,912 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980fc3150> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:13,913 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980fc3150> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:13,915 - INFO - Created channel=1
+2025-10-11 21:17:13,930 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:14,175 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:14,176 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.5', 51500), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:14,177 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x79492744b110>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x79492744b110> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:14,181 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x79492744b110> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:14,181 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x79492744b110> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:14,182 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x79492744b110> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:14,183 - INFO - Created channel=1
+2025-10-11 21:17:14,185 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:14,343 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:14,344 - INFO - Socket connected: <socket.socket fd=7, family=2, type=1, proto=6, laddr=('172.18.0.6', 44614), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:14,345 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f7ae10>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f7ae10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:14,348 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f7ae10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:14,349 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f7ae10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:14,349 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f7ae10> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:14,350 - INFO - Created channel=1
+2025-10-11 21:17:14,352 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:15,452 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:15,452 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:15,452 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:15,453 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:15,453 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:15,453 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:15,562 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,564 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,567 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,758 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,762 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,762 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,927 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:17:15,927 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,934 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:17:15,935 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:15,945 - INFO - There is no [linux64] chromedriver "141.0.7390.76" for browser google-chrome "141.0.7390" in cache
+2025-10-11 21:17:15,945 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:16,421 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:17:16,428 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:17:16,431 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:17:16,434 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:17:16,436 - INFO - WebDriver version 141.0.7390.76 selected
+2025-10-11 21:17:16,436 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:17:16,437 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:17:16,446 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:17:16,448 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/141.0.7390.76/linux64/chromedriver-linux64.zip
+2025-10-11 21:17:17,062 - INFO - Driver downloading response is 200
+2025-10-11 21:17:17,076 - INFO - Driver downloading response is 200
+2025-10-11 21:17:17,083 - INFO - Driver downloading response is 200
+2025-10-11 21:17:19,627 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:19,673 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:19,910 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:17:19,990 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:17:20,529 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x626c938614ca <unknown>
+#1 0x626c932e0566 <unknown>
+#2 0x626c9331bb4c <unknown>
+#3 0x626c933177c4 <unknown>
+#4 0x626c93366bd3 <unknown>
+#5 0x626c93366286 <unknown>
+#6 0x626c93358403 <unknown>
+#7 0x626c93324b02 <unknown>
+#8 0x626c933257c1 <unknown>
+#9 0x626c93825298 <unknown>
+#10 0x626c938290ff <unknown>
+#11 0x626c9380c729 <unknown>
+#12 0x626c93829ca5 <unknown>
+#13 0x626c937f1f8f <unknown>
+#14 0x626c9384e308 <unknown>
+#15 0x626c9384e4e3 <unknown>
+#16 0x626c93860463 <unknown>
+#17 0x7508503d9b7b <unknown>
+
+2025-10-11 21:17:20,611 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x646f2c7f14ca <unknown>
+#1 0x646f2c270566 <unknown>
+#2 0x646f2c2abb4c <unknown>
+#3 0x646f2c2a77c4 <unknown>
+#4 0x646f2c2f6bd3 <unknown>
+#5 0x646f2c2f6286 <unknown>
+#6 0x646f2c2e8403 <unknown>
+#7 0x646f2c2b4b02 <unknown>
+#8 0x646f2c2b57c1 <unknown>
+#9 0x646f2c7b5298 <unknown>
+#10 0x646f2c7b90ff <unknown>
+#11 0x646f2c79c729 <unknown>
+#12 0x646f2c7b9ca5 <unknown>
+#13 0x646f2c781f8f <unknown>
+#14 0x646f2c7de308 <unknown>
+#15 0x646f2c7de4e3 <unknown>
+#16 0x646f2c7f0463 <unknown>
+#17 0x7004eb691b7b <unknown>
+
+2025-10-11 21:17:21,570 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:21,862 - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76]
+2025-10-11 21:17:22,484 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x6022e7a174ca <unknown>
+#1 0x6022e7496566 <unknown>
+#2 0x6022e74d1b4c <unknown>
+#3 0x6022e74cd7c4 <unknown>
+#4 0x6022e751cbd3 <unknown>
+#5 0x6022e751c286 <unknown>
+#6 0x6022e750e403 <unknown>
+#7 0x6022e74dab02 <unknown>
+#8 0x6022e74db7c1 <unknown>
+#9 0x6022e79db298 <unknown>
+#10 0x6022e79df0ff <unknown>
+#11 0x6022e79c2729 <unknown>
+#12 0x6022e79dfca5 <unknown>
+#13 0x6022e79a7f8f <unknown>
+#14 0x6022e7a04308 <unknown>
+#15 0x6022e7a044e3 <unknown>
+#16 0x6022e7a16463 <unknown>
+#17 0x77840509db7b <unknown>
+
+2025-10-11 21:17:30,533 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:30,534 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.6', 39914), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:30,535 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d144759d0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d144759d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:30,542 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d144759d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:30,542 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d144759d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:30,543 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d144759d0> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:30,544 - INFO - Created channel=1
+2025-10-11 21:17:30,552 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:30,553 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:30,555 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:30,614 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:30,615 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.4', 41246), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:30,616 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b44d390>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b44d390> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:30,625 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b44d390> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:30,626 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b44d390> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:30,627 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b44d390> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:30,627 - INFO - Created channel=1
+2025-10-11 21:17:30,631 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:30,632 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:30,632 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:30,673 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:30,760 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:30,858 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:30,938 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:31,028 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:17:31,111 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:17:31,646 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5e893655e4ca <unknown>
+#1 0x5e8935fdd566 <unknown>
+#2 0x5e8936018b4c <unknown>
+#3 0x5e89360147c4 <unknown>
+#4 0x5e8936063bd3 <unknown>
+#5 0x5e8936063286 <unknown>
+#6 0x5e8936055403 <unknown>
+#7 0x5e8936021b02 <unknown>
+#8 0x5e89360227c1 <unknown>
+#9 0x5e8936522298 <unknown>
+#10 0x5e89365260ff <unknown>
+#11 0x5e8936509729 <unknown>
+#12 0x5e8936526ca5 <unknown>
+#13 0x5e89364eef8f <unknown>
+#14 0x5e893654b308 <unknown>
+#15 0x5e893654b4e3 <unknown>
+#16 0x5e893655d463 <unknown>
+#17 0x7bf5097f9b7b <unknown>
+
+2025-10-11 21:17:31,726 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5aeace4f64ca <unknown>
+#1 0x5aeacdf75566 <unknown>
+#2 0x5aeacdfb0b4c <unknown>
+#3 0x5aeacdfac7c4 <unknown>
+#4 0x5aeacdffbbd3 <unknown>
+#5 0x5aeacdffb286 <unknown>
+#6 0x5aeacdfed403 <unknown>
+#7 0x5aeacdfb9b02 <unknown>
+#8 0x5aeacdfba7c1 <unknown>
+#9 0x5aeace4ba298 <unknown>
+#10 0x5aeace4be0ff <unknown>
+#11 0x5aeace4a1729 <unknown>
+#12 0x5aeace4beca5 <unknown>
+#13 0x5aeace486f8f <unknown>
+#14 0x5aeace4e3308 <unknown>
+#15 0x5aeace4e34e3 <unknown>
+#16 0x5aeace4f5463 <unknown>
+#17 0x7c364e52eb7b <unknown>
+
+2025-10-11 21:17:32,487 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:32,488 - INFO - Socket connected: <socket.socket fd=11, family=2, type=1, proto=6, laddr=('172.18.0.5', 54194), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:32,489 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794925945750>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794925945750> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:32,492 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794925945750> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:32,493 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794925945750> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:32,493 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794925945750> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:32,494 - INFO - Created channel=1
+2025-10-11 21:17:32,496 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:32,497 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:32,497 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:32,566 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:32,744 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:32,911 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:17:33,530 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x60b3699064ca <unknown>
+#1 0x60b369385566 <unknown>
+#2 0x60b3693c0b4c <unknown>
+#3 0x60b3693bc7c4 <unknown>
+#4 0x60b36940bbd3 <unknown>
+#5 0x60b36940b286 <unknown>
+#6 0x60b3693fd403 <unknown>
+#7 0x60b3693c9b02 <unknown>
+#8 0x60b3693ca7c1 <unknown>
+#9 0x60b3698ca298 <unknown>
+#10 0x60b3698ce0ff <unknown>
+#11 0x60b3698b1729 <unknown>
+#12 0x60b3698ceca5 <unknown>
+#13 0x60b369896f8f <unknown>
+#14 0x60b3698f3308 <unknown>
+#15 0x60b3698f34e3 <unknown>
+#16 0x60b369905463 <unknown>
+#17 0x7a0c74bceb7b <unknown>
+
+2025-10-11 21:17:41,648 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:41,649 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.6', 55826), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:41,650 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f95210>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f95210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:41,653 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f95210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:41,654 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f95210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:41,654 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15f95210> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:41,655 - INFO - Created channel=1
+2025-10-11 21:17:41,657 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:41,658 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:41,658 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:41,724 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:41,727 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:41,728 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.4', 36634), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:41,730 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980ff6710>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980ff6710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:41,734 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980ff6710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:41,734 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980ff6710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:41,734 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a980ff6710> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:41,735 - INFO - Created channel=1
+2025-10-11 21:17:41,738 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:41,738 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:41,738 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:41,808 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:41,901 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:41,978 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:42,072 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:17:42,155 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:17:42,690 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x6208500394ca <unknown>
+#1 0x62084fab8566 <unknown>
+#2 0x62084faf3b4c <unknown>
+#3 0x62084faef7c4 <unknown>
+#4 0x62084fb3ebd3 <unknown>
+#5 0x62084fb3e286 <unknown>
+#6 0x62084fb30403 <unknown>
+#7 0x62084fafcb02 <unknown>
+#8 0x62084fafd7c1 <unknown>
+#9 0x62084fffd298 <unknown>
+#10 0x6208500010ff <unknown>
+#11 0x62084ffe4729 <unknown>
+#12 0x620850001ca5 <unknown>
+#13 0x62084ffc9f8f <unknown>
+#14 0x620850026308 <unknown>
+#15 0x6208500264e3 <unknown>
+#16 0x620850038463 <unknown>
+#17 0x798de6054b7b <unknown>
+
+2025-10-11 21:17:42,771 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5c4b9d67f4ca <unknown>
+#1 0x5c4b9d0fe566 <unknown>
+#2 0x5c4b9d139b4c <unknown>
+#3 0x5c4b9d1357c4 <unknown>
+#4 0x5c4b9d184bd3 <unknown>
+#5 0x5c4b9d184286 <unknown>
+#6 0x5c4b9d176403 <unknown>
+#7 0x5c4b9d142b02 <unknown>
+#8 0x5c4b9d1437c1 <unknown>
+#9 0x5c4b9d643298 <unknown>
+#10 0x5c4b9d6470ff <unknown>
+#11 0x5c4b9d62a729 <unknown>
+#12 0x5c4b9d647ca5 <unknown>
+#13 0x5c4b9d60ff8f <unknown>
+#14 0x5c4b9d66c308 <unknown>
+#15 0x5c4b9d66c4e3 <unknown>
+#16 0x5c4b9d67e463 <unknown>
+#17 0x7c8f2dd7db7b <unknown>
+
+2025-10-11 21:17:43,531 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:43,531 - INFO - Socket connected: <socket.socket fd=15, family=2, type=1, proto=6, laddr=('172.18.0.5', 57466), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:43,532 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794927482190>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794927482190> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:43,536 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794927482190> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:43,537 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794927482190> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:43,537 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x794927482190> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:43,538 - INFO - Created channel=1
+2025-10-11 21:17:43,541 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:43,542 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:43,542 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:43,613 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:43,791 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:43,971 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:17:44,586 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x640f853b74ca <unknown>
+#1 0x640f84e36566 <unknown>
+#2 0x640f84e71b4c <unknown>
+#3 0x640f84e6d7c4 <unknown>
+#4 0x640f84ebcbd3 <unknown>
+#5 0x640f84ebc286 <unknown>
+#6 0x640f84eae403 <unknown>
+#7 0x640f84e7ab02 <unknown>
+#8 0x640f84e7b7c1 <unknown>
+#9 0x640f8537b298 <unknown>
+#10 0x640f8537f0ff <unknown>
+#11 0x640f85362729 <unknown>
+#12 0x640f8537fca5 <unknown>
+#13 0x640f85347f8f <unknown>
+#14 0x640f853a4308 <unknown>
+#15 0x640f853a44e3 <unknown>
+#16 0x640f853b6463 <unknown>
+#17 0x7332cb3e7b7b <unknown>
+
+2025-10-11 21:17:52,694 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:52,694 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.6', 55288), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:52,695 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d143ec890>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d143ec890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:52,698 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d143ec890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:52,699 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d143ec890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:52,699 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d143ec890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:52,700 - INFO - Created channel=1
+2025-10-11 21:17:52,703 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:52,704 - INFO - Загружено 3 прокси из переменных окружения
+2025-10-11 21:17:52,704 - INFO - ====== WebDriver manager ======
+2025-10-11 21:17:52,773 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:52,774 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.4', 37572), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:52,775 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b396510>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b396510> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:52,779 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b396510> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:52,781 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b396510> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:52,781 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x77a97b396510> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:52,782 - INFO - Created channel=1
+2025-10-11 21:17:52,783 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:52,785 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:17:52,975 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-11 21:17:53,194 - INFO - Driver [/root/.wdm/drivers/chromedriver/linux64/141.0.7390.76/chromedriver-linux64/chromedriver] found in cache
+2025-10-11 21:17:53,812 - ERROR - Ошибка подключения к RabbitMQ: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x5eea20fb44ca <unknown>
+#1 0x5eea20a33566 <unknown>
+#2 0x5eea20a6eb4c <unknown>
+#3 0x5eea20a6a7c4 <unknown>
+#4 0x5eea20ab9bd3 <unknown>
+#5 0x5eea20ab9286 <unknown>
+#6 0x5eea20aab403 <unknown>
+#7 0x5eea20a77b02 <unknown>
+#8 0x5eea20a787c1 <unknown>
+#9 0x5eea20f78298 <unknown>
+#10 0x5eea20f7c0ff <unknown>
+#11 0x5eea20f5f729 <unknown>
+#12 0x5eea20f7cca5 <unknown>
+#13 0x5eea20f44f8f <unknown>
+#14 0x5eea20fa1308 <unknown>
+#15 0x5eea20fa14e3 <unknown>
+#16 0x5eea20fb3463 <unknown>
+#17 0x7e8842153b7b <unknown>
+
+2025-10-11 21:17:54,589 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:17:54,590 - INFO - Socket connected: <socket.socket fd=19, family=2, type=1, proto=6, laddr=('172.18.0.5', 41634), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:17:54,591 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7949258bc890>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7949258bc890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:17:54,594 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7949258bc890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:54,595 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7949258bc890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:54,595 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7949258bc890> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:17:54,596 - INFO - Created channel=1
+2025-10-11 21:17:54,598 - INFO - Ожидаем сообщения из RabbitMQ...
+2025-10-11 21:18:03,814 - INFO - Pika version 1.3.0 connecting to ('172.18.0.2', 5672)
+2025-10-11 21:18:03,814 - INFO - Socket connected: <socket.socket fd=23, family=2, type=1, proto=6, laddr=('172.18.0.6', 45844), raddr=('172.18.0.2', 5672)>
+2025-10-11 21:18:03,815 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15fb2950>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15fb2950> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>).
+2025-10-11 21:18:03,819 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15fb2950> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:18:03,820 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15fb2950> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:18:03,820 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x7c7d15fb2950> params=<ConnectionParameters host=rabbitmq port=5672 virtual_host=/ ssl=False>>
+2025-10-11 21:18:03,821 - INFO - Created channel=1
+2025-10-11 21:18:03,824 - INFO - Ожидаем сообщения из RabbitMQ...
