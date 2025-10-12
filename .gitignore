@@ -1,0 +1,11 @@
+# Environment variables
+.env
+
+# Logs directory
+logs/
+
+# Data directory
+data/
+
+# Python virtual environment
+.venv/

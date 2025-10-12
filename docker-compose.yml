@@ -1,74 +1,53 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
     environment:
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
+    ports:
+      - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-    env_file:
-      - .env
     healthcheck:
-      test: rabbitmq-diagnostics -q ping
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 10s
-      timeout: 5s
+      timeout: 10s
       retries: 5
-      start_period: 30s
 
   queue_setup:
     build: .
-    command: >
-      sh -c "
-        echo '⏳ Ожидаем запуск RabbitMQ...'
-        while ! nc -z rabbitmq 5672; do
-          sleep 2
-        done
-        sleep 5
-        echo '✅ RabbitMQ готов! Запускаем заполнение очереди...'
-        python queue_setup.py
-      "
-    volumes:
-      - ./data:/app/data
-      - ./logs:/app/logs
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - TOTAL_SELLERS=10
+    command: python queue_setup.py
     depends_on:
       rabbitmq:
         condition: service_healthy
-    environment:
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_USER=${RABBITMQ_USER}
-      - RABBITMQ_PASS=${RABBITMQ_PASS}
-    env_file:
-      - .env
-    restart: "no"
+    restart: on-failure
 
   parser:
     build: .
-    command: >
-      sh -c "
-        echo '⏳ Парсер: Ожидаем RabbitMQ...'
-        while ! nc -z rabbitmq 5672; do
-          sleep 2
-        done
-        sleep 3
-        echo '✅ RabbitMQ готов! Запускаем парсер...'
-        python parser.py
-      "
-    volumes:
-      - ./data:/app/data
-      - ./logs:/app/logs
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - USE_PROXIES=false
+    deploy:
+      resources:
+        limits:
+          memory: 800M
     depends_on:
       rabbitmq:
         condition: service_healthy
-    environment:
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_USER=${RABBITMQ_USER}
-      - RABBITMQ_PASS=${RABBITMQ_PASS}
-    env_file:
-      - .env
     restart: unless-stopped
+    # Увеличим лимиты CPU при необходимости
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '1.0'
+    #       memory: 1G
 
 volumes:
   rabbitmq_data:
