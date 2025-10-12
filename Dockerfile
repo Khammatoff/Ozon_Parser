@@ -3,6 +3,7 @@ FROM python:3.9-slim
 # Установка системных зависимостей
 RUN apt-get update && apt-get install -y \
     wget \
+    curl \
     unzip \
     libnss3 \
     libatk-bridge2.0-0 \
@@ -27,14 +28,18 @@ RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http:
 # Установка Google Chrome
 RUN apt-get update && apt-get install -y google-chrome-stable
 
+# === 🔥 ОЧИСТКА КЭША WEBDRIVER-MANAGER (важно!) ===
+RUN rm -rf /root/.wdm
+
+# Создание структуры папок для volume mounts
+RUN mkdir -p /app/data /app/logs /app/screenshots
+WORKDIR /app
+
 # Установка Python зависимостей (включая webdriver-manager)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копирование кода
 COPY . .
-
-# Создание директории для логов
-RUN mkdir -p logs
 
 CMD ["python", "parser.py"]

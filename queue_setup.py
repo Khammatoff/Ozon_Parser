@@ -21,7 +21,7 @@ def setup_queue():
     rabbitmq_host = os.getenv('RABBITMQ_HOST', 'rabbitmq')  # Имя сервиса в docker-compose
     rabbitmq_user = os.getenv('RABBITMQ_USER', 'admin')
     rabbitmq_pass = os.getenv('RABBITMQ_PASS', 'guest')
-    total_sellers = int(os.getenv('TOTAL_SELLERS', '10'))  # Для теста лучше 10
+    total_sellers = int(os.environ['TOTAL_SELLERS'])
 
     logging.info(f"🚀 Запуск заполнения очереди")
     logging.info(f"🎯 Подключение к RabbitMQ: {rabbitmq_host}")

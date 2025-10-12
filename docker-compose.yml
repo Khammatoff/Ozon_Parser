@@ -8,11 +8,17 @@ services:
       - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
     healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
       interval: 10s
       timeout: 10s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2'
 
   queue_setup:
     build: .
@@ -20,7 +26,7 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USER=admin
       - RABBITMQ_PASS=${RABBITMQ_PASS}
-      - TOTAL_SELLERS=10
+      - TOTAL_SELLERS=${TOTAL_SELLERS}
     command: python queue_setup.py
     depends_on:
       rabbitmq:
@@ -34,6 +40,11 @@ services:
       - RABBITMQ_USER=admin
       - RABBITMQ_PASS=${RABBITMQ_PASS}
       - USE_PROXIES=false
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./screenshots:/app/screenshots
+      - webdriver_cache:/root/.wdm  # ← Общий кэш
     deploy:
       resources:
         limits:
@@ -42,12 +53,7 @@ services:
       rabbitmq:
         condition: service_healthy
     restart: unless-stopped
-    # Увеличим лимиты CPU при необходимости
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: '1.0'
-    #       memory: 1G
 
 volumes:
   rabbitmq_data:
+  webdriver_cache:

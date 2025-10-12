@@ -1,11 +1,25 @@
-# Environment variables
 .env
-
-# Logs directory
+.env.local
 logs/
-
-# Data directory
 data/
-
-# Python virtual environment
+screenshots/
+*.log
 .venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
