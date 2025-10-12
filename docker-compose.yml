@@ -39,12 +39,13 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USER=admin
       - RABBITMQ_PASS=${RABBITMQ_PASS}
-      - USE_PROXIES=false
+      - USE_PROXIES=${USE_PROXIES}
+      - PROXY_LIST=${PROXY_LIST}
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
       - ./screenshots:/app/screenshots
-      - webdriver_cache:/root/.wdm  # ← Общий кэш
+      - webdriver_cache:/root/.wdm
     deploy:
       resources:
         limits:
