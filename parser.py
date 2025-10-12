@@ -43,6 +43,14 @@ class OzonSellerParser:
         self.driver = None
         self.wait = None
         self.current_proxy = None
+        self.proxy_list = []
+        self.proxy_rotation_count = int(os.getenv('PROXY_ROTATION_COUNT', 3))
+        self.proxy_timeout = int(os.getenv('PROXY_ROTATION_TIMEOUT', 30))
+
+        # Загружаем список прокси
+        proxy_list_str = os.getenv('PROXY_LIST', '')
+        if proxy_list_str:
+            self.proxy_list = [p.strip() for p in proxy_list_str.split(',') if p.strip()]
 
         # Уникальная временная директория для Chrome
         self.chrome_temp_dir = tempfile.mkdtemp()
@@ -62,8 +70,48 @@ class OzonSellerParser:
             self.close()
             raise
 
+    def rotate_proxy(self):
+        """Ротация прокси и перезапуск драйвера"""
+        if not self.proxy_list or len(self.proxy_list) <= 1:
+            return False
+
+        try:
+            # Переходим к следующему прокси по кругу
+            self.current_proxy_index = (self.current_proxy_index + 1) % len(self.proxy_list)
+            new_proxy = self.proxy_list[self.current_proxy_index]
+
+            old_proxy = self.current_proxy
+            self.current_proxy = new_proxy
+            self.requests_per_proxy = 0  # Сбрасываем счетчик
+
+            logging.info(
+                f"🔄 Ротируем прокси [{self.current_proxy_index + 1}/{len(self.proxy_list)}]: {old_proxy} -> {new_proxy}")
+
+            # Перезапускаем драйвер с новым прокси
+            if self.driver:
+                self.driver.quit()
+                time.sleep(2)
+
+            self.setup_driver()
+            self.wait = WebDriverWait(self.driver, 15)
+
+            logging.info("✅ Прокси успешно сменен")
+            return True
+
+        except Exception as e:
+            logging.error(f"❌ Ошибка ротации прокси: {e}")
+            # Пробуем восстановить работу с текущим прокси
+            try:
+                if self.driver:
+                    self.driver.quit()
+                self.setup_driver()
+                self.wait = WebDriverWait(self.driver, 15)
+            except:
+                pass
+            return False
+
     def setup_driver(self):
-        """Настройка Chrome для работы в Docker с headless и stealth"""
+        """Настройка Chrome для работы в Docker с headless, stealth и прокси"""
         chrome_options = Options()
 
         # === Критические опции для Docker ===
@@ -83,23 +131,34 @@ class OzonSellerParser:
         # === Размер окна ===
         chrome_options.add_argument("--window-size=1366,768")
 
-        # === Настройка прокси из .env ===
+        # === УЛУЧШЕННАЯ НАСТРОЙКА ПРОКСИ ===
         use_proxies = os.getenv('USE_PROXIES', 'false').lower() == 'true'
         proxy_list_str = os.getenv('PROXY_LIST', '')
 
         if use_proxies and proxy_list_str:
-            proxy_list = [p.strip() for p in proxy_list_str.split(',') if p.strip()]
-            if proxy_list:
-                current_proxy = random.choice(proxy_list)
+            self.proxy_list = [p.strip() for p in proxy_list_str.split(',') if p.strip()]
+
+            if self.proxy_list:
+                # Инициализируем индекс прокси при первом запуске
+                if not hasattr(self, 'current_proxy_index'):
+                    self.current_proxy_index = 0
+                    self.requests_per_proxy = 0
+
+                # Берем текущий прокси по индексу (а не случайный)
+                current_proxy = self.proxy_list[self.current_proxy_index]
                 chrome_options.add_argument(f'--proxy-server={current_proxy}')
-                logging.info(f"🔄 Используем прокси: {current_proxy}")
                 self.current_proxy = current_proxy
+
+                logging.info(
+                    f"🔄 Используем прокси [{self.current_proxy_index + 1}/{len(self.proxy_list)}]: {current_proxy}")
             else:
                 logging.warning("⚠️ PROXY_LIST пустой, работаем без прокси")
                 self.current_proxy = None
+                self.proxy_list = []
         else:
             logging.info("🔌 Прокси отключены в настройках")
             self.current_proxy = None
+            self.proxy_list = []
 
         # === Улучшенные stealth опции ===
         chrome_options.add_argument("--disable-blink-features=AutomationControlled")
@@ -113,11 +172,14 @@ class OzonSellerParser:
         # Уникальный профиль
         chrome_options.add_argument(f"--user-data-dir={self.chrome_temp_dir}")
 
-        # Случайный User-Agent
+        # Случайный User-Agent из обновленного списка
         user_agents = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/121.0.0.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15"
         ]
         chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
 
@@ -803,12 +865,22 @@ class OzonSellerParser:
             return {}
 
     def parse_seller(self, seller_id):
-        """Основной метод парсинга продавца"""
+        """Основной метод парсинга продавца с ротацией прокси"""
         url = f"https://www.ozon.ru/seller/{seller_id}"
+
+        # 🔄 ПРОВЕРКА РОТАЦИИ ПЕРЕД НАЧАЛОМ ПАРСИНГА
+        if self.proxy_list:
+            self.requests_per_proxy += 1
+            proxy_rotation_count = int(os.getenv('PROXY_ROTATION_COUNT', 5))
+
+            if self.requests_per_proxy >= proxy_rotation_count:
+                logging.info(f"🔄 Достигнут лимит запросов ({self.requests_per_proxy}) для прокси, ротируем...")
+                self.rotate_proxy()
 
         # Логируем информацию о прокси
         proxy_info = f" [Прокси: {self.current_proxy}]" if self.current_proxy else " [Без прокси]"
-        logging.info(f"🔍 Парсим продавца {seller_id}{proxy_info}")
+        proxy_count_info = f" [Запросов на прокси: {self.requests_per_proxy}]" if self.proxy_list else ""
+        logging.info(f"🔍 Парсим продавца {seller_id}{proxy_info}{proxy_count_info}")
 
         seller_data = {'URL': url}
 
@@ -830,6 +902,11 @@ class OzonSellerParser:
                 screenshot_path = f"/app/screenshots/error_{seller_id}_{int(time.time())}.png"
                 self.driver.save_screenshot(screenshot_path)
                 time.sleep(2)
+
+                # 🔄 ПРИНУДИТЕЛЬНАЯ РОТАЦИЯ ПРИ БЛОКИРОВКЕ
+                if ("доступ ограничен" in page_source or "blocked" in page_source) and self.proxy_list:
+                    logging.warning(f"🚫 Обнаружена блокировка, принудительно ротируем прокси...")
+                    self.rotate_proxy()
 
                 if "доступ ограничен" in page_source or "blocked" in page_source:
                     logging.warning(f"🚫 Продавец {seller_id} заблокирован{proxy_info}. Скриншот: {screenshot_path}")
