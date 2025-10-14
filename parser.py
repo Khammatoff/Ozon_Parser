@@ -207,13 +207,10 @@ class OzonSellerParser:
             logging.warning(f"⚠️ Ошибка применения selenium-stealth: {e}")
 
     def init_csv(self):
-        """Инициализация CSV файла с заголовками"""
+        """Инициализация CSV файла с заголовками по ТЗ"""
         headers = [
-            'URL', 'Название', 'Рейтинг', 'Отзывы', 'Заказы',
-            'Описание', 'Ссылка_на_магазин', 'Instance_ID',
-            'ОГРН', 'ИНН', 'Название_юр_лица', 'Веб-сайт',
-            'Кол-во_товаров_на_странице', 'Общее_кол-во_товаров', 'Срок_регистрации',
-            'Html_путь', 'Товары_JSON'
+            'URL', 'название', 'Html', 'ОГРН', 'ИНН', 'Название юр лица',
+            'Кол-во отзывов', 'рейтинг', 'Срок регистрации', 'Товары'
         ]
         try:
             with open(self.csv_file, 'w', newline='', encoding='utf-8-sig') as f:
@@ -224,28 +221,21 @@ class OzonSellerParser:
             logging.error(f"❌ Ошибка создания CSV: {e}", exc_info=True)
 
     def save_to_csv(self, data):
-        """Сохранение данных в CSV"""
+        """Сохранение данных в CSV по ТЗ"""
         try:
             with open(self.csv_file, 'a', newline='', encoding='utf-8-sig') as f:
                 writer = csv.writer(f)
                 writer.writerow([
                     data.get('URL', ''),
                     data.get('Название', ''),
-                    data.get('Рейтинг', ''),
-                    data.get('Отзывы', ''),
-                    data.get('Заказы', ''),
-                    data.get('Описание', ''),
-                    data.get('Ссылка_на_магазин', ''),
-                    self.instance_id,
+                    data.get('Html_путь', ''),  # Переименовали
                     data.get('ОГРН', ''),
                     data.get('ИНН', ''),
                     data.get('Название_юр_лица', ''),
-                    data.get('Веб-сайт', ''),
-                    data.get('Кол-во_товаров_на_странице', ''),
-                    data.get('Общее_кол-во_товаров', ''),
-                    data.get('Срок_регистрации', ''),
-                    data.get('Html_путь', ''),
-                    data.get('Товары_JSON', '')
+                    data.get('Отзывы', ''),  # Переименовали
+                    data.get('Рейтинг', ''),  # Переименовали
+                    data.get('Срок_регистрации', ''),  # Переименовали
+                    data.get('Товары_JSON', '')  # Переименовали
                 ])
                 f.flush()
                 os.fsync(f.fileno())
@@ -267,115 +257,236 @@ class OzonSellerParser:
             return ""
 
     def extract_products_from_main_page(self):
+        """Парсинг товаров с главной страницы без скроллинга"""
         try:
             logging.info("🛒 Начинаем парсинг товаров с главной страницы...")
 
-            # Ожидаем появления контейнера с товарами - ИЩЕМ ТОЧНЫЙ СЕЛЕКТОР
-            WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-widget='infiniteVirtualPagination']"))
-            )
-
-            # Прокрутка
-            last_height = self.driver.execute_script("return document.body.scrollHeight")
-            scroll_attempts = 0
-            while scroll_attempts < 3:
-                self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                time.sleep(2)
-                new_height = self.driver.execute_script("return document.body.scrollHeight")
-                if new_height == last_height:
-                    break
-                last_height = new_height
-                scroll_attempts += 1
+            # Ждем появления контейнера с товарами
+            try:
+                WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located(
+                        (By.CSS_SELECTOR, "div[data-widget*='paginator'], div[data-widget*='tileGrid'], div.tile-root"))
+                )
+            except:
+                logging.warning("⚠️ Не найден контейнер с товарами, возвращаем пустой список")
+                return []
 
             products = []
 
-            # ⚡ ОСНОВНОЙ СЕЛЕКТОР ДЛЯ КАРТОЧЕК ТОВАРОВ ⚡
-            # Ищем ВСЕ карточки товаров по классу и data-атрибуту
-            product_cards = self.driver.find_elements(By.CSS_SELECTOR, "div.tile-root[data-index]")
+            # ⚡ ОСНОВНЫЕ СЕЛЕКТОРЫ ДЛЯ КАРТОЧЕК ТОВАРОВ ⚡
+            # Ищем карточки товаров по разным селекторам
+            product_selectors = [
+                "div.tile-root[data-index]",  # Основной селектор
+                "div[data-widget*='tileGrid'] div.tile-root",  # Внутри tileGrid
+                "#paginator div.tile-root",  # Внутри пагинатора
+                "div[data-index]"  # Любой элемент с data-index
+            ]
 
-            logging.info(f"📦 Найдено карточек товаров: {len(product_cards)}")
+            product_cards = []
+            for selector in product_selectors:
+                try:
+                    cards = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                    if cards:
+                        product_cards = cards
+                        logging.info(f"📦 Найдено карточек товаров по селектору '{selector}': {len(cards)}")
+                        break
+                except:
+                    continue
 
-            for card in product_cards[:20]:  # Первые 20 товаров
+            if not product_cards:
+                logging.warning("⚠️ Не найдено карточек товаров")
+                return []
+
+            # Парсим только видимые карточки (первые 20 или все видимые)
+            visible_cards = [card for card in product_cards if card.is_displayed()][:20]
+            logging.info(f"🎯 Парсим видимых карточек: {len(visible_cards)}")
+
+            for card in visible_cards:
                 try:
                     product_data = {}
 
-                    # 1. НАЗВАНИЕ ТОВАРА - ищем в ссылке или в span
+                    # 1. НАЗВАНИЕ ТОВАРА
                     try:
-                        # Вариант 1: Ищем текст в ссылке
-                        link_elem = card.find_element(By.CSS_SELECTOR, "a[href*='/product/']")
-                        product_data['name'] = link_elem.get_attribute('textContent').strip()
-                    except:
-                        # Вариант 2: Ищем в span с текстом
-                        try:
-                            spans = card.find_elements(By.CSS_SELECTOR, "span")
-                            for span in spans:
-                                text = span.text.strip()
-                                if text and len(text) > 10:  # Название обычно длинное
-                                    product_data['name'] = text
+                        # Ищем название в основном месте
+                        name_selectors = [
+                            ".bq03_0_2-a span.tsBody500Medium",  # Основной селектор названия
+                            "a[href*='/product/'] .bq03_0_2-a span",  # В ссылке
+                            ".tsBody500Medium",  # По классу текста
+                            "span[class*='tsBody500']"  # Любой span с текстом
+                        ]
+
+                        for name_selector in name_selectors:
+                            try:
+                                name_elem = card.find_element(By.CSS_SELECTOR, name_selector)
+                                name_text = name_elem.text.strip()
+                                if name_text and len(name_text) > 5:  # Название должно быть достаточно длинным
+                                    product_data['name'] = name_text
                                     break
-                        except:
+                            except:
+                                continue
+
+                        if not product_data.get('name'):
                             product_data['name'] = ''
 
-                    # 2. ЦЕНА ТОВАРА - ищем элементы с ценой
+                    except Exception as e:
+                        logging.debug(f"⚠️ Ошибка поиска названия: {e}")
+                        product_data['name'] = ''
+
+                    # 2. ЦЕНА ТОВАРА
                     try:
-                        # Ищем элементы содержащие "₽" или цифры с символами валют
+                        # Основные селекторы цены
                         price_selectors = [
-                            "span[class*='price']",
-                            "span[class*='money']",
-                            "div[class*='price']",
-                            "//span[contains(text(), '₽')]"
+                            ".c35_3_8-a1.tsHeadline500Medium",  # Основная цена
+                            "span[class*='tsHeadline500Medium']",  # Цена по классу
+                            ".c35_3_8-a0 span",  # В контейнере цены
+                            "//span[contains(text(), '₽')]"  # Любой элемент с символом рубля
                         ]
-                        for selector in price_selectors:
+
+                        for price_selector in price_selectors:
                             try:
-                                if selector.startswith("//"):
-                                    price_elems = card.find_elements(By.XPATH, selector)
+                                if price_selector.startswith("//"):
+                                    price_elems = card.find_elements(By.XPATH, price_selector)
                                 else:
-                                    price_elems = card.find_elements(By.CSS_SELECTOR, selector)
+                                    price_elems = card.find_elements(By.CSS_SELECTOR, price_selector)
 
                                 for elem in price_elems:
                                     text = elem.text.strip()
-                                    if '₽' in text or any(char.isdigit() for char in text):
+                                    # Ищем цену с символом рубля или просто цифры
+                                    if '₽' in text or (any(char.isdigit() for char in text) and len(text) <= 20):
                                         product_data['price'] = text
                                         break
                                 if product_data.get('price'):
                                     break
                             except:
                                 continue
-                    except:
+
+                        if not product_data.get('price'):
+                            product_data['price'] = ''
+
+                    except Exception as e:
+                        logging.debug(f"⚠️ Ошибка поиска цены: {e}")
                         product_data['price'] = ''
 
                     # 3. ССЫЛКА НА ТОВАР
                     try:
-                        link_elem = card.find_element(By.CSS_SELECTOR, "a[href*='/product/']")
-                        product_data['link'] = "https://www.ozon.ru" + link_elem.get_attribute('href')
-                    except:
-                        product_data['link'] = ''
-
-                    # 4. РЕЙТИНГ ТОВАРА (если есть)
-                    try:
-                        rating_selectors = [
-                            "[class*='rating']",
-                            "[class*='star']",
-                            "//span[contains(@class, 'rating')]"
+                        link_selectors = [
+                            "a[href*='/product/']",  # Основная ссылка на товар
+                            ".tile-clickable-element[href*='/product/']"  # Кликабельный элемент
                         ]
-                        for selector in rating_selectors:
-                            try:
-                                if selector.startswith("//"):
-                                    rating_elem = card.find_element(By.XPATH, selector)
-                                else:
-                                    rating_elem = card.find_element(By.CSS_SELECTOR, selector)
 
-                                if rating_elem.text.strip():
-                                    product_data['rating'] = rating_elem.text.strip()
+                        for link_selector in link_selectors:
+                            try:
+                                link_elem = card.find_element(By.CSS_SELECTOR, link_selector)
+                                href = link_elem.get_attribute('href')
+                                if href and '/product/' in href:
+                                    product_data['link'] = href if href.startswith(
+                                        'http') else f"https://www.ozon.ru{href}"
                                     break
                             except:
                                 continue
-                    except:
+
+                        if not product_data.get('link'):
+                            product_data['link'] = ''
+
+                    except Exception as e:
+                        logging.debug(f"⚠️ Ошибка поиска ссылки: {e}")
+                        product_data['link'] = ''
+
+                    # 4. ФОТО ТОВАРА
+                    try:
+                        img_selectors = [
+                            "img.i4s_24.b95_3_3-a",
+                            "img[loading='eager']",
+                            "img[src*='ozon.ru']",
+                            "img.b95_3_3-a"
+                        ]
+
+                        for img_selector in img_selectors:
+                            try:
+                                img_elem = card.find_element(By.CSS_SELECTOR, img_selector)
+                                img_src = img_elem.get_attribute('src')
+                                if img_src and 'ozon.ru' in img_src:
+                                    product_data['image'] = img_src
+                                    break
+                            except:
+                                continue
+
+                        if not product_data.get('image'):
+                            product_data['image'] = ''
+
+                    except Exception as e:
+                        logging.debug(f"⚠️ Ошибка поиска фото: {e}")
+                        product_data['image'] = ''
+
+                    # 5. РЕЙТИНГ ТОВАРА
+                    try:
+                        rating_selectors = [
+                            ".p6b3_0_2-a4 span[style*='color:var(--textPremium)']",  # Рейтинг
+                            "span[style*='color:var(--textPremium)']",  # По цвету
+                            "//span[contains(@style, 'textPremium')]"  # XPath по стилю
+                        ]
+
+                        for rating_selector in rating_selectors:
+                            try:
+                                if rating_selector.startswith("//"):
+                                    rating_elems = card.find_elements(By.XPATH, rating_selector)
+                                else:
+                                    rating_elems = card.find_elements(By.CSS_SELECTOR, rating_selector)
+
+                                for elem in rating_elems:
+                                    text = elem.text.strip()
+                                    # Проверяем, что это рейтинг (число с точкой или просто число)
+                                    if text and ('.' in text or text.replace('.', '').isdigit()):
+                                        product_data['rating'] = text
+                                        break
+                                if product_data.get('rating'):
+                                    break
+                            except:
+                                continue
+
+                        if not product_data.get('rating'):
+                            product_data['rating'] = ''
+
+                    except Exception as e:
+                        logging.debug(f"⚠️ Ошибка поиска рейтинга: {e}")
                         product_data['rating'] = ''
 
-                    # Добавляем только если есть название
+                    # 6. КОЛИЧЕСТВО ОТЗЫВОВ
+                    try:
+                        reviews_selectors = [
+                            ".p6b3_0_2-a4 span[style*='color:var(--textSecondary)']",  # Отзывы
+                            "span[style*='color:var(--textSecondary)']",  # По цвету
+                            "//span[contains(text(), 'отзыв')]"  # По тексту
+                        ]
+
+                        for reviews_selector in reviews_selectors:
+                            try:
+                                if reviews_selector.startswith("//"):
+                                    reviews_elems = card.find_elements(By.XPATH, reviews_selector)
+                                else:
+                                    reviews_elems = card.find_elements(By.CSS_SELECTOR, reviews_selector)
+
+                                for elem in reviews_elems:
+                                    text = elem.text.strip()
+                                    if 'отзыв' in text.lower():
+                                        product_data['reviews_count'] = text
+                                        break
+                                if product_data.get('reviews_count'):
+                                    break
+                            except:
+                                continue
+
+                        if not product_data.get('reviews_count'):
+                            product_data['reviews_count'] = ''
+
+                    except Exception as e:
+                        logging.debug(f"⚠️ Ошибка поиска отзывов: {e}")
+                        product_data['reviews_count'] = ''
+
+                    # Добавляем товар только если есть название
                     if product_data.get('name'):
                         products.append(product_data)
+                        logging.debug(f"✅ Добавлен товар: {product_data['name'][:50]}...")
 
                 except Exception as e:
                     logging.debug(f"⚠️ Ошибка парсинга карточки товара: {e}")
@@ -385,7 +496,7 @@ class OzonSellerParser:
             return products
 
         except Exception as e:
-            logging.error(f"❌ Ошибка при парсинге товаров: {e}")
+            logging.error(f"❌ Ошибка при парсинге товаров: {str(e)}")
             return []
 
     def click_shop_button(self):
@@ -624,10 +735,12 @@ class OzonSellerParser:
             # Название магазина
             try:
                 name_selectors = [
+                    # Основной селектор из твоего HTML
+                    ".bq03_0_2-a.bq03_0_2-a4.bq03_0_2-a5.h5n_19 span.tsHeadline600Large",
+                    ".tsHeadline600Large",  # Резервный селектор
                     "h1",
                     ".seller-name",
                     "[data-widget='webSellerName']",
-                    ".shop-title",
                     "//h1[contains(@class, 'title')]"
                 ]
                 for selector in name_selectors:
@@ -638,10 +751,12 @@ class OzonSellerParser:
                             element = self.driver.find_element(By.CSS_SELECTOR, selector)
                         if element.text.strip():
                             data['Название'] = element.text.strip()
+                            logging.info(f"✅ Найдено название магазина: {data['Название']}")
                             break
                     except:
                         continue
-            except:
+            except Exception as e:
+                logging.warning(f"⚠️ Не удалось извлечь название магазина: {e}")
                 data['Название'] = ''
 
             # Рейтинг
@@ -773,38 +888,86 @@ class OzonSellerParser:
             logging.error(f"❌ Ошибка извлечения информации о магазине: {e}")
             return {}
 
+    def save_screenshot(self, seller_id, prefix=""):
+        """Сохранение скриншота для отладки"""
+        try:
+            screenshot_path = f"/app/screenshots/{prefix}{seller_id}_{int(time.time())}.png"
+            self.driver.save_screenshot(screenshot_path)
+            logging.info(f"📸 Сохранен скриншот: {screenshot_path}")
+            return screenshot_path
+        except Exception as e:
+            logging.warning(f"⚠️ Не удалось сохранить скриншот: {e}")
+            return ""
+
     def parse_seller(self, seller_id):
         """Основной метод парсинга продавца"""
         url = f"https://www.ozon.ru/seller/{seller_id}"
 
         seller_data = {'URL': url}
+        html_paths = []  # Список для хранения путей к HTML файлам
 
         try:
             # Загружаем страницу
             self.driver.get(url)
             time.sleep(random.uniform(5, 8))
 
-            # Сохраняем HTML
-            seller_data['Html_путь'] = self.save_html_page(seller_id, "main_")
+            # 🔥 СОХРАНЯЕМ HTML СРАЗУ ПОСЛЕ ЗАГРУЗКИ
+            main_html_path = self.save_html_page(seller_id, "main_")
+            html_paths.append(main_html_path)
+
+            # 🔥 СОХРАНЯЕМ СКРИНШОТ
+            self.save_screenshot(seller_id, "loaded_")
 
             # Парсим товары с главной страницы
-            products = self.extract_products_from_main_page()
-            seller_data['Кол-во_товаров_на_странице'] = len(products)
-            seller_data['Товары_JSON'] = json.dumps(products, ensure_ascii=False)
+            try:
+                products = self.extract_products_from_main_page()
+                seller_data['Кол-во_товаров_на_странице'] = len(products)
+                seller_data['Товары_JSON'] = json.dumps(products, ensure_ascii=False)
+            except Exception as e:
+                logging.error(f"❌ Ошибка при парсинге товаров: {e}")
+                # Сохраняем скриншот при ошибке парсинга товаров
+                self.save_screenshot(seller_id, "products_error_")
+                seller_data['Кол-во_товаров_на_странице'] = 0
+                seller_data['Товары_JSON'] = '[]'
 
             # Пробуем открыть и спарсить модальное окно
-            if self.click_shop_button():
-                legal_info = self.extract_legal_info_from_modal()
-                seller_data.update(legal_info)
-            else:
-                logging.warning(f"⚠️ Не удалось открыть модалку для продавца {seller_id}")
+            try:
+                if self.click_shop_button():
+                    # 🔥 СОХРАНЯЕМ HTML ПОСЛЕ КЛИКА НА МАГАЗИН
+                    shop_html_path = self.save_html_page(seller_id, "shop_")
+                    html_paths.append(shop_html_path)
+
+                    legal_info = self.extract_legal_info_from_modal()
+                    seller_data.update(legal_info)
+                else:
+                    logging.warning(f"⚠️ Не удалось открыть модалку для продавца {seller_id}")
+                    # Сохраняем скриншот при неудачном клике
+                    self.save_screenshot(seller_id, "shop_button_error_")
+            except Exception as e:
+                logging.error(f"❌ Ошибка при работе с модальным окном: {e}")
+                self.save_screenshot(seller_id, "modal_error_")
+
+            # 🔥 СОХРАНЯЕМ ВСЕ ПУТИ К HTML В ДАННЫЕ
+            seller_data['Html_путь'] = "; ".join(html_paths)
 
             # Сохраняем данные
             self.save_to_csv(seller_data)
+            logging.info(f"✅ Успешно обработан продавец {seller_id}")
             return seller_data
 
         except Exception as e:
-            logging.error(f"❌ Ошибка парсинга продавца {seller_id}: {e}")
+            logging.error(f"❌ Критическая ошибка парсинга продавца {seller_id}: {e}")
+            # 🔥 СОХРАНЯЕМ СКРИНШОТ И HTML ПРИ ЛЮБОЙ КРИТИЧЕСКОЙ ОШИБКЕ
+            self.save_screenshot(seller_id, "critical_error_")
+            error_html_path = self.save_html_page(seller_id, "error_")
+            seller_data['Html_путь'] = error_html_path
+
+            # Сохраняем то, что успели собрать
+            try:
+                self.save_to_csv(seller_data)
+            except:
+                pass
+
             return None
 
     def close(self):

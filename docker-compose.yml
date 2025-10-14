@@ -41,10 +41,13 @@ services:
       - RABBITMQ_PASS=${RABBITMQ_PASS}
       - USE_PROXIES=${USE_PROXIES}
       - PROXY_LIST=${PROXY_LIST}
+      - PROXY_ROTATION_COUNT=${PROXY_ROTATION_COUNT:-5}
+      - PROXY_ROTATION_TIMEOUT=${PROXY_ROTATION_TIMEOUT:-30}
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
       - ./screenshots:/app/screenshots
+      - ./html:/app/html
       - webdriver_cache:/root/.wdm
     deploy:
       resources:
@@ -54,6 +57,20 @@ services:
       rabbitmq:
         condition: service_healthy
     restart: unless-stopped
+
+  merge-csv:
+    build: .
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./merge_scripts:/app/merge_scripts
+    profiles:
+      - merge
+    command: python /app/merge_scripts/merge_csv.py
 
 volumes:
   rabbitmq_data:

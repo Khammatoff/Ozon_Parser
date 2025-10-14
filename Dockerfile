@@ -43,3 +43,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 CMD ["python", "parser.py"]
+
+# Копируем скрипты объединения
+COPY merge_scripts /app/merge_scripts
+
+# Устанавливаем pandas для объединения CSV
+RUN pip install pandas
