@@ -393,24 +393,13 @@ class OzonSellerParser:
         try:
             logging.info("🛍️ Ищем кнопку 'Магазин'...")
 
-            # ⚡ СКРОЛЛИМ К ВЕРХУ ПЕРЕД ПОИСКОМ
-            self.driver.execute_script("window.scrollTo(0, 0);")
-            time.sleep(2)
-
-            # 🔥 ОСНОВНЫЕ СЕЛЕКТОРЫ ИЗ ВАШЕГО HTML:
+            # ОСНОВНЫЕ СЕЛЕКТОРЫ ИЗ ТВОЕГО HTML
             shop_selectors = [
-                # Селекторы из вашего HTML
-                "div[data-widget='sellertransparency'] a[href*='/seller/']",
-                "div.m6h_19 a[href*='/seller/']",  # По классу из data-widget
-                "div.hm7_19 a[href*='/seller/']",  # Внутренний контейнер
-                "div.hm8_19 a[href*='/seller/']",
-                "div.b5_4_4-a0",  # Кнопка с стилями из вашего HTML
-                "div[style*='background: var'][style*='border-radius: 8px']",  # По стилям
-
-                # Дополнительные селекторы
-                "//a[contains(@href, '/seller/') and contains(text(), 'Магазин')]",
-                "//button[contains(text(), 'Магазин')]",
-                "//div[contains(@class, 'shop')]//a[contains(@href, '/seller/')]"
+                "div.b5_4_4-a0[title='Магазин']",  # По title
+                "div.b5_4_4-b0[title='Магазин']",  # По title внутреннего элемента
+                "//div[@title='Магазин' and contains(@class, 'b5_4_4-b0')]",  # XPath
+                "div.b5_4_4-a0",  # Основной контейнер
+                "//div[contains(@class, 'b5_4_4-b0') and text()='Магазин']"  # По тексту
             ]
 
             for selector in shop_selectors:
@@ -424,29 +413,18 @@ class OzonSellerParser:
 
                     for element in elements:
                         try:
-                            if element.is_displayed() and element.is_enabled():
-                                # Получаем URL перед кликом
-                                shop_url = element.get_attribute('href')
-                                element_text = element.text.strip()
+                            if element.is_displayed():
+                                logging.info(f"🎯 Нашли кнопку магазина: '{element.text}'")
 
-                                logging.info(f"🎯 Нашли кнопку магазина: '{element_text}', URL: {shop_url}")
+                                # Пробуем разные способы клика
+                                try:
+                                    element.click()
+                                except:
+                                    self.driver.execute_script("arguments[0].click();", element)
 
-                                # Скроллим к элементу и кликаем
-                                self.driver.execute_script(
-                                    "arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
-                                time.sleep(2)
-
-                                # Кликаем через JavaScript (надежнее)
-                                self.driver.execute_script("arguments[0].click();", element)
-
-                                # Ждем загрузки новой страницы
-                                time.sleep(random.uniform(3, 5))
-                                WebDriverWait(self.driver, 10).until(
-                                    EC.presence_of_element_located((By.TAG_NAME, "body"))
-                                )
-
-                                logging.info(f"✅ Успешно перешли в магазин")
-                                return shop_url
+                                time.sleep(3)
+                                logging.info("✅ Успешно кликнули на кнопку 'Магазин'")
+                                return True
 
                         except Exception as e:
                             logging.debug(f"⚠️ Элемент не кликабелен: {e}")
@@ -457,17 +435,11 @@ class OzonSellerParser:
                     continue
 
             logging.warning("⚠️ Не удалось найти и кликнуть на кнопку 'Магазин'")
-
-            # Сохраняем скриншот для отладки
-            screenshot_path = f"/app/screenshots/no_shop_button_{int(time.time())}.png"
-            self.driver.save_screenshot(screenshot_path)
-            logging.info(f"📸 Сохранен скриншот для отладки: {screenshot_path}")
-
-            return None
+            return False
 
         except Exception as e:
             logging.error(f"❌ Ошибка при клике на кнопку магазина: {e}")
-            return None
+            return False
 
     def extract_legal_info_from_modal(self):
         """Извлечение юридической информации из модального окна 'О магазине'"""
@@ -476,18 +448,11 @@ class OzonSellerParser:
 
             legal_data = {}
 
-            # 🔥 СЕЛЕКТОРЫ ДЛЯ ОТКРЫТИЯ МОДАЛЬНОГО ОКНА
+            # Селекторы для открытия модального окна (дополненные)
             modal_button_selectors = [
-                # Основные селекторы для открытия информации о магазине
-                "button[data-widget*='webSeller']",
-                "a[href*='#info']",
-                "button[class*='info']",
-                "div[class*='seller-info'] button",
-                "//button[contains(., 'О магазине')]",
-                "//a[contains(., 'О магазине')]",
-                "//*[contains(., 'магазин') and contains(@class, 'button')]",
-                "//*[@data-widget='webSellerName']//button",  # Кнопка рядом с названием магазина
-                "//*[contains(@class, 'seller')]//button[contains(@class, 'info')]"
+                "//div[contains(@class, 'b5_4_4-a0')]//div[contains(text(), 'Магазин')]",
+                "//div[contains(@class, 'b5_4_4-b0') and contains(text(), 'Магазин')]",
+                "div.b5_4_4-a0[style*='background: var']"
             ]
 
             # Пробуем найти и кликнуть на кнопку открытия модалки
@@ -517,185 +482,17 @@ class OzonSellerParser:
                 logging.warning("⚠️ Не удалось открыть модальное окно")
                 return legal_data
 
-            # ⚡ ИЗВЛЕКАЕМ ДАННЫЕ ИЗ МОДАЛЬНОГО ОКНА
+            # Ждем загрузки модального окна
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'b65_4_8-a')]"))
+            )
 
-            # 1. ОГРН (из текста внизу модалки)
-            try:
-                # Ищем блок с юридической информацией
-                legal_text_selectors = [
-                    "//div[contains(@class, 'bq03_0_2-a')]//span[contains(@class, 'tsBody400Small')]",
-                    "//*[contains(@class, 'tsBody400Small') and contains(text(), '10477')]",
-                    "//*[contains(text(), '1047796071839')]"
-                ]
+            # Извлекаем все данные из модального окна
+            modal_data = self.extract_all_modal_data()
+            legal_data.update(modal_data)
 
-                for selector in legal_text_selectors:
-                    try:
-                        elements = self.driver.find_elements(By.XPATH, selector)
-                        for element in elements:
-                            text = element.text.strip()
-                            # Ищем 13-значный номер (ОГРН)
-                            import re
-                            ogrn_match = re.search(r'\b\d{13}\b', text)
-                            if ogrn_match:
-                                legal_data['ОГРН'] = ogrn_match.group()
-                                logging.info(f"✅ Найден ОГРН: {legal_data['ОГРН']}")
-                                break
-
-                            # Если нашли текст с ООО - извлекаем название компании
-                            if 'ООО' in text or 'АО' in text or 'ИП' in text:
-                                # Берем первую строку как название компании
-                                company_name = text.split('\n')[0]
-                                legal_data['Название_юр_лица'] = company_name
-                                logging.info(f"✅ Название компании: {company_name}")
-
-                    except:
-                        continue
-            except Exception as e:
-                logging.warning(f"⚠️ Не удалось извлечь ОГРН: {e}")
-                legal_data['ОГРН'] = ''
-
-            # 2. РЕЙТИНГ (из модалки)
-            try:
-                rating_selectors = [
-                    "//div[contains(@class, 'b5_4_4-b0') and contains(text(), 'из 5')]",
-                    "//*[contains(text(), 'из 5')]",
-                    "//*[contains(@title, 'из 5')]"
-                ]
-                for selector in rating_selectors:
-                    try:
-                        element = self.driver.find_element(By.XPATH, selector)
-                        text = element.text.strip()
-                        if 'из 5' in text:
-                            legal_data['Рейтинг'] = text
-                            break
-                    except:
-                        continue
-            except:
-                legal_data['Рейтинг'] = ''
-
-            # 3. ОТЗЫВЫ
-            try:
-                reviews_selectors = [
-                    "//*[contains(text(), 'отзыв')]/following-sibling::div//div[contains(@class, 'b5_4_4-b0')]",
-                    "//div[contains(@class, 'b5_4_4-b0') and (contains(text(), 'K') or contains(text(), 'тыс') or contains(text(), 'отзыв'))]"
-                ]
-                for selector in reviews_selectors:
-                    try:
-                        element = self.driver.find_element(By.XPATH, selector)
-                        text = element.text.strip()
-                        # Проверяем, что это число (может содержать K, тыс и т.д.)
-                        if any(char.isdigit() for char in text):
-                            legal_data['Отзывы'] = text
-                            break
-                    except:
-                        continue
-            except:
-                legal_data['Отзывы'] = ''
-
-            # 4. ЗАКАЗЫ
-            try:
-                orders_selectors = [
-                    "//*[contains(text(), 'Заказов')]/following-sibling::div//div[contains(@class, 'b5_4_4-b0')]",
-                    "//div[contains(@class, 'b5_4_4-b0') and (contains(text(), 'M') or contains(text(), 'тыс') or contains(text(), 'заказ'))]"
-                ]
-                for selector in orders_selectors:
-                    try:
-                        element = self.driver.find_element(By.XPATH, selector)
-                        text = element.text.strip()
-                        if any(char.isdigit() for char in text):
-                            legal_data['Заказы'] = text
-                            break
-                    except:
-                        continue
-            except:
-                legal_data['Заказы'] = ''
-
-            # 5. СРОК РЕГИСТРАЦИИ
-            try:
-                registration_selectors = [
-                    "//*[contains(text(), 'Работает с Ozon')]/following-sibling::div//div[contains(@class, 'b5_4_4-b0')]",
-                    "//*[contains(text(), 'Работает с')]/following-sibling::div//div[contains(@class, 'b5_4_4-b0')]",
-                    "//*[contains(text(), 'На Ozon с')]",
-                    "//*[contains(@title, 'лет') or contains(@title, 'год') or contains(@title, 'месяц')]",
-                    "//div[contains(@class, 'b5_4_4-b0') and (contains(text(), 'лет') or contains(text(), 'год') or contains(text(), 'месяц'))]"
-                ]
-
-                for selector in registration_selectors:
-                    try:
-                        if selector.startswith("//"):
-                            elements = self.driver.find_elements(By.XPATH, selector)
-                        else:
-                            elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
-
-                        for element in elements:
-                            text = element.text.strip()
-                            # Проверяем, содержит ли текст временные единицы
-                            if any(word in text.lower() for word in ['лет', 'год', 'месяц', 'день']):
-                                legal_data['Срок_регистрации'] = text
-                                logging.info(f"✅ Найден срок регистрации: {text}")
-                                break
-                        if legal_data.get('Срок_регистрации'):
-                            break
-                    except:
-                        continue
-
-                # Если не нашли по селекторам, пробуем найти любой элемент с временными данными
-                if not legal_data.get('Срок_регистрации'):
-                    try:
-                        all_elements = self.driver.find_elements(By.XPATH,
-                                                                 "//*[contains(text(), 'Работает с Ozon')]//following::div[1]//div")
-                        for element in all_elements:
-                            text = element.text.strip()
-                            if any(word in text.lower() for word in ['лет', 'год', 'месяц']):
-                                legal_data['Срок_регистрации'] = text
-                                break
-                    except:
-                        pass
-
-            except Exception as e:
-                logging.warning(f"⚠️ Не удалось извлечь срок регистрации: {e}")
-                legal_data['Срок_регистрации'] = ''
-
-            # 6. ВЕБ-САЙТ (пробуем найти)
-            try:
-                # Ищем ссылки которые могут быть сайтом компании
-                all_links = self.driver.find_elements(By.TAG_NAME, "a")
-                for link in all_links:
-                    href = link.get_attribute('href') or ''
-                    text = link.text.strip()
-                    if ('http' in href and 'ozon.ru' not in href and
-                            not href.startswith('javascript') and len(text) > 3):
-                        legal_data['Веб-сайт'] = href
-                        break
-            except:
-                legal_data['Веб-сайт'] = ''
-
-            # 🔥 ЗАКРЫВАЕМ МОДАЛЬНОЕ ОКНО
-            try:
-                close_selectors = [
-                    "button[class*='b65_4_8-b1']",  # Кнопка закрытия из вашего HTML
-                    "button[aria-label*='Закрыть']",
-                    "//button[contains(@class, 'b65_4_8-b1')]",
-                    "//button[contains(., 'Понятно')]",
-                    "button.b25_4_4-a0"  # Кнопка "Понятно" из вашего HTML
-                ]
-
-                for selector in close_selectors:
-                    try:
-                        if selector.startswith("//"):
-                            close_btn = self.driver.find_element(By.XPATH, selector)
-                        else:
-                            close_btn = self.driver.find_element(By.CSS_SELECTOR, selector)
-
-                        if close_btn.is_displayed():
-                            self.driver.execute_script("arguments[0].click();", close_btn)
-                            time.sleep(2)
-                            logging.info("✅ Модальное окно закрыто")
-                            break
-                    except:
-                        continue
-            except Exception as e:
-                logging.warning(f"⚠️ Не удалось закрыть модальное окно: {e}")
+            # Закрываем модальное окно
+            self.close_modal()
 
             logging.info(f"✅ Юридическая информация извлечена: {legal_data}")
             return legal_data
@@ -703,6 +500,118 @@ class OzonSellerParser:
         except Exception as e:
             logging.error(f"❌ Ошибка при получении юридической информации: {e}")
             return {}
+
+    def extract_all_modal_data(self):
+        """Извлечение всех данных из модального окна"""
+        data = {}
+
+        try:
+            # 1. Название магазина (в заголовке модалки)
+            try:
+                title_element = self.driver.find_element(By.XPATH, "//span[@class='tsHeadline600Medium']")
+                data['Название'] = title_element.text.strip()
+            except:
+                data['Название'] = ''
+
+            # 2. Извлекаем данные из таблицы (Заказы, Работает с Ozon, Рейтинг и т.д.)
+            cell_selectors = [
+                "//div[contains(@class, 'b35_3_10-a9')]//span",  # Названия параметров
+            ]
+
+            # Ищем все строки с данными
+            rows = self.driver.find_elements(By.XPATH, "//div[contains(@class, 'b35_3_10-a')]")
+
+            for row in rows:
+                try:
+                    # Получаем название параметра
+                    param_name_element = row.find_element(By.XPATH, ".//div[contains(@class, 'b35_3_10-a9')]//span")
+                    param_name = param_name_element.text.strip()
+
+                    # Получаем значение параметра
+                    value_element = row.find_element(By.XPATH, ".//div[contains(@class, 'b5_4_4-b0')]")
+                    param_value = value_element.text.strip()
+
+                    # Сохраняем в соответствующие поля
+                    if 'Заказов' in param_name:
+                        data['Заказы'] = param_value
+                    elif 'Работает с Ozon' in param_name:
+                        data['Срок_регистрации'] = param_value
+                    elif 'Средняя оценка товаров' in param_name:
+                        data['Рейтинг'] = param_value
+                    elif 'Количество отзывов' in param_name:
+                        data['Отзывы'] = param_value
+
+                except Exception as e:
+                    continue
+
+            # 3. Юридическая информация (ОГРН, адрес и т.д.)
+            try:
+                legal_text_elements = self.driver.find_elements(
+                    By.XPATH, "//div[contains(@class, 'bq03_0_2-a')]//span[contains(@class, 'tsBody400Small')]"
+                )
+
+                legal_text = ""
+                for element in legal_text_elements:
+                    legal_text += element.text.strip() + "\n"
+
+                # Извлекаем ОГРН (13 цифр)
+                import re
+                ogrn_match = re.search(r'\b\d{13}\b', legal_text)
+                if ogrn_match:
+                    data['ОГРН'] = ogrn_match.group()
+
+                # Извлекаем название юрлица (первая строка)
+                lines = legal_text.split('\n')
+                for line in lines:
+                    if 'ООО' in line or 'АО' in line or 'ИП' in line:
+                        data['Название_юр_лица'] = line.strip()
+                        break
+
+                data['Юридический_адрес'] = legal_text.strip()
+
+            except Exception as e:
+                logging.warning(f"⚠️ Не удалось извлечь юридическую информацию: {e}")
+
+        except Exception as e:
+            logging.error(f"❌ Ошибка извлечения данных из модалки: {e}")
+
+        return data
+
+    def close_modal(self):
+        """Закрытие модального окна"""
+        try:
+            close_selectors = [
+                "button.b25_4_4-a0",  # Кнопка "Понятно"
+                "button.b65_4_8-b1",  # Кнопка закрытия
+                "//button[contains(., 'Понятно')]",
+                "//button[contains(@class, 'b65_4_8-b1')]"
+            ]
+
+            for selector in close_selectors:
+                try:
+                    if selector.startswith("//"):
+                        close_btn = self.driver.find_element(By.XPATH, selector)
+                    else:
+                        close_btn = self.driver.find_element(By.CSS_SELECTOR, selector)
+
+                    if close_btn.is_displayed():
+                        self.driver.execute_script("arguments[0].click();", close_btn)
+                        time.sleep(2)
+                        logging.info("✅ Модальное окно закрыто")
+                        return True
+                except:
+                    continue
+
+            # Если не нашли кнопку, пробуем кликнуть вне модалки
+            try:
+                overlay = self.driver.find_element(By.CSS_SELECTOR, "div.b65_4_8-a0")
+                self.driver.execute_script("arguments[0].click();", overlay)
+                time.sleep(1)
+            except:
+                pass
+
+        except Exception as e:
+            logging.warning(f"⚠️ Не удалось закрыть модальное окно: {e}")
 
     def extract_shop_info(self):
         """Извлечение информации со страницы магазина"""
@@ -865,119 +774,37 @@ class OzonSellerParser:
             return {}
 
     def parse_seller(self, seller_id):
-        """Основной метод парсинга продавца с ротацией прокси"""
+        """Основной метод парсинга продавца"""
         url = f"https://www.ozon.ru/seller/{seller_id}"
-
-        # 🔄 ПРОВЕРКА РОТАЦИИ ПЕРЕД НАЧАЛОМ ПАРСИНГА
-        if self.proxy_list:
-            self.requests_per_proxy += 1
-            proxy_rotation_count = int(os.getenv('PROXY_ROTATION_COUNT', 5))
-
-            if self.requests_per_proxy >= proxy_rotation_count:
-                logging.info(f"🔄 Достигнут лимит запросов ({self.requests_per_proxy}) для прокси, ротируем...")
-                self.rotate_proxy()
-
-        # Логируем информацию о прокси
-        proxy_info = f" [Прокси: {self.current_proxy}]" if self.current_proxy else " [Без прокси]"
-        proxy_count_info = f" [Запросов на прокси: {self.requests_per_proxy}]" if self.proxy_list else ""
-        logging.info(f"🔍 Парсим продавца {seller_id}{proxy_info}{proxy_count_info}")
 
         seller_data = {'URL': url}
 
         try:
-            # === ЭТАП 1: Загружаем страницу продавца ===
-            logging.info(f"🌐 Загружаем страницу продавца: {url}")
+            # Загружаем страницу
             self.driver.get(url)
             time.sleep(random.uniform(5, 8))
 
-            # Проверяем на блокировку
-            page_source = self.driver.page_source.lower()
-            blocking_indicators = [
-                "страница не найдена", "404", "доступ ограничен",
-                "captcha", "bot", "automation", "доступ запрещен",
-                "blocked", "cloudflare", "недоступен"
-            ]
-
-            if any(phrase in page_source for phrase in blocking_indicators):
-                screenshot_path = f"/app/screenshots/error_{seller_id}_{int(time.time())}.png"
-                self.driver.save_screenshot(screenshot_path)
-                time.sleep(2)
-
-                # 🔄 ПРИНУДИТЕЛЬНАЯ РОТАЦИЯ ПРИ БЛОКИРОВКЕ
-                if ("доступ ограничен" in page_source or "blocked" in page_source) and self.proxy_list:
-                    logging.warning(f"🚫 Обнаружена блокировка, принудительно ротируем прокси...")
-                    self.rotate_proxy()
-
-                if "доступ ограничен" in page_source or "blocked" in page_source:
-                    logging.warning(f"🚫 Продавец {seller_id} заблокирован{proxy_info}. Скриншот: {screenshot_path}")
-                elif "страница не найдена" in page_source or "404" in page_source:
-                    logging.warning(f"❓ Продавец {seller_id} не существует{proxy_info}")
-                else:
-                    logging.warning(
-                        f"⚠️ Неизвестная ошибка для продавца {seller_id}{proxy_info}. Скриншот: {screenshot_path}")
-                return None
-
-            # === ЭТАП 2: Сохраняем HTML главной страницы ===
+            # Сохраняем HTML
             seller_data['Html_путь'] = self.save_html_page(seller_id, "main_")
 
-            # === ЭТАП 3: Парсим товары с главной страницы ===
-            logging.info("🛒 Парсим товары с главной страницы...")
+            # Парсим товары с главной страницы
             products = self.extract_products_from_main_page()
             seller_data['Кол-во_товаров_на_странице'] = len(products)
             seller_data['Товары_JSON'] = json.dumps(products, ensure_ascii=False)
-            logging.info(f"✅ Спарсено товаров: {len(products)}")
 
-            # === ЭТАП 4: Скроллим к верху для поиска кнопки "Магазин" ===
-            logging.info("⬆️ Скроллим к верху для поиска кнопки 'Магазин'...")
-            self.driver.execute_script("window.scrollTo(0, 0);")
-            time.sleep(3)
-
-            # === ЭТАП 5: Ищем и кликаем кнопку "Магазин" ===
-            logging.info("🛍️ Ищем кнопку 'Магазин'...")
-            shop_url = self.click_shop_button()
-
-            if not shop_url:
-                logging.warning(f"⚠️ Не удалось найти кнопку 'Магазин' для продавца {seller_id}")
-                # Сохраняем то, что успели собрать
-                if products:
-                    self.save_to_csv(seller_data)
-                    logging.info(f"✅ Сохранены данные без информации о магазине")
-                return seller_data
-
-            seller_data['Ссылка_на_магазин'] = shop_url
-            logging.info(f"✅ Успешно перешли в магазин: {shop_url}")
-
-            # === ЭТАП 6: Сохраняем HTML страницы магазина ===
-            seller_data['Html_путь'] += f"; {self.save_html_page(seller_id, 'shop_')}"
-
-            # === ЭТАП 7: Парсим информацию о магазине ===
-            logging.info("🏪 Парсим информацию о магазине...")
-            shop_info = self.extract_shop_info()
-            seller_data.update(shop_info)
-
-            # === ЭТАП 8: Парсим юридическую информацию ===
-            logging.info("⚖️ Парсим юридическую информацию...")
-            legal_info = self.extract_legal_info_from_modal()
-            seller_data.update(legal_info)
-
-            # === ЭТАП 9: Сохраняем все данные ===
-            if self.save_to_csv(seller_data):
-                logging.info(f"✅ Успешно обработан продавец {seller_id}{proxy_info}")
-                return seller_data
+            # Пробуем открыть и спарсить модальное окно
+            if self.click_shop_button():
+                legal_info = self.extract_legal_info_from_modal()
+                seller_data.update(legal_info)
             else:
-                logging.error(f"❌ Ошибка сохранения продавца {seller_id}{proxy_info}")
-                return None
+                logging.warning(f"⚠️ Не удалось открыть модалку для продавца {seller_id}")
+
+            # Сохраняем данные
+            self.save_to_csv(seller_data)
+            return seller_data
 
         except Exception as e:
-            # Сохраняем скриншот при критической ошибке
-            screenshot_path = f"/app/screenshots/crash_{seller_id}_{int(time.time())}.png"
-            try:
-                self.driver.save_screenshot(screenshot_path)
-                time.sleep(2)
-                logging.error(f"💥 Критическая ошибка при парсинге {seller_id}{proxy_info}. Скриншот: {screenshot_path}",
-                              exc_info=True)
-            except:
-                logging.error(f"💥 Ошибка при парсинге {seller_id}: {e}", exc_info=True)
+            logging.error(f"❌ Ошибка парсинга продавца {seller_id}: {e}")
             return None
 
     def close(self):
