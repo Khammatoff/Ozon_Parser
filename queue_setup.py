@@ -18,14 +18,18 @@ def setup_queue():
     load_dotenv()
 
     # Получаем настройки
-    rabbitmq_host = os.getenv('RABBITMQ_HOST', 'rabbitmq')  # Имя сервиса в docker-compose
+    rabbitmq_host = os.getenv('RABBITMQ_HOST', 'rabbitmq')
     rabbitmq_user = os.getenv('RABBITMQ_USER', 'admin')
     rabbitmq_pass = os.getenv('RABBITMQ_PASS', 'guest')
-    total_sellers = int(os.environ['TOTAL_SELLERS'])
+
+    # Используем диапазон
+    start_id = int(os.getenv('START_SELLER_ID', 1))
+    end_id = int(os.getenv('END_SELLER_ID', 30000))
 
     logging.info(f"🚀 Запуск заполнения очереди")
     logging.info(f"🎯 Подключение к RabbitMQ: {rabbitmq_host}")
-    logging.info(f"📊 Будет добавлено {total_sellers} ID продавцов")
+    logging.info(f"📊 Диапазон ID продавцов: {start_id} - {end_id}")
+    logging.info(f"📈 Всего продавцов: {end_id - start_id + 1}")
 
     # Цикл с повторными попытками подключения
     while True:
@@ -41,7 +45,7 @@ def setup_queue():
                 )
             )
             logging.info("✅ Подключение к RabbitMQ установлено")
-            break  # Успешно подключились
+            break
         except Exception as e:
             logging.error(f"❌ Ошибка подключения к RabbitMQ: {e}")
             logging.info("⏳ Повторная попытка через 5 секунд...")
@@ -54,9 +58,9 @@ def setup_queue():
         channel.queue_declare(queue='seller_ids', durable=True)
         logging.info("✅ Очередь 'seller_ids' объявлена")
 
-        # Заполняем очередь ID продавцов
+        # Заполняем очередь в диапазоне
         added_count = 0
-        for seller_id in range(1, total_sellers + 1):
+        for seller_id in range(start_id, end_id + 1):
             channel.basic_publish(
                 exchange='',
                 routing_key='seller_ids',

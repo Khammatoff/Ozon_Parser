@@ -23,7 +23,7 @@ import pika
 os.makedirs("/app/logs", exist_ok=True)
 os.makedirs("/app/data", exist_ok=True)
 os.makedirs("/app/screenshots", exist_ok=True)
-os.makedirs("/app/html", exist_ok=True)  # Для сохранения HTML
+os.makedirs("/app/html", exist_ok=True)
 
 # Настройка логирования
 logging.basicConfig(
@@ -131,7 +131,7 @@ class OzonSellerParser:
         # === Размер окна ===
         chrome_options.add_argument("--window-size=1366,768")
 
-        # === УЛУЧШЕННАЯ НАСТРОЙКА ПРОКСИ ===
+        # === НАСТРОЙКА ПРОКСИ ===
         use_proxies = os.getenv('USE_PROXIES', 'false').lower() == 'true'
         proxy_list_str = os.getenv('PROXY_LIST', '')
 
@@ -172,7 +172,7 @@ class OzonSellerParser:
         # Уникальный профиль
         chrome_options.add_argument(f"--user-data-dir={self.chrome_temp_dir}")
 
-        # Случайный User-Agent из обновленного списка
+        # Случайный User-Agent
         user_agents = [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
@@ -207,7 +207,7 @@ class OzonSellerParser:
             logging.warning(f"⚠️ Ошибка применения selenium-stealth: {e}")
 
     def init_csv(self):
-        """Инициализация CSV файла с заголовками по ТЗ"""
+        """Инициализация CSV файла"""
         headers = [
             'URL', 'название', 'Html', 'ОГРН', 'ИНН', 'Название юр лица',
             'Кол-во отзывов', 'рейтинг', 'Срок регистрации', 'Товары'
@@ -221,21 +221,21 @@ class OzonSellerParser:
             logging.error(f"❌ Ошибка создания CSV: {e}", exc_info=True)
 
     def save_to_csv(self, data):
-        """Сохранение данных в CSV по ТЗ"""
+        """Сохранение данных в CSV"""
         try:
             with open(self.csv_file, 'a', newline='', encoding='utf-8-sig') as f:
                 writer = csv.writer(f)
                 writer.writerow([
                     data.get('URL', ''),
                     data.get('Название', ''),
-                    data.get('Html_путь', ''),  # Переименовали
+                    data.get('Html_путь', ''),
                     data.get('ОГРН', ''),
                     data.get('ИНН', ''),
                     data.get('Название_юр_лица', ''),
-                    data.get('Отзывы', ''),  # Переименовали
-                    data.get('Рейтинг', ''),  # Переименовали
-                    data.get('Срок_регистрации', ''),  # Переименовали
-                    data.get('Товары_JSON', '')  # Переименовали
+                    data.get('Отзывы', ''),
+                    data.get('Рейтинг', ''),
+                    data.get('Срок_регистрации', ''),
+                    data.get('Товары_JSON', '')
                 ])
                 f.flush()
                 os.fsync(f.fileno())
@@ -246,7 +246,7 @@ class OzonSellerParser:
             return False
 
     def save_html_page(self, seller_id, prefix=""):
-        """Сохранение HTML страницы для отладки"""
+        """Сохранение HTML страницы"""
         try:
             html_path = f"/app/html/{prefix}{seller_id}_{int(time.time())}.html"
             with open(html_path, 'w', encoding='utf-8') as f:
@@ -257,7 +257,7 @@ class OzonSellerParser:
             return ""
 
     def extract_products_from_main_page(self):
-        """Парсинг товаров с главной страницы без скроллинга"""
+        """Парсинг товаров с главной страницы"""
         try:
             logging.info("🛒 Начинаем парсинг товаров с главной страницы...")
 
@@ -504,7 +504,7 @@ class OzonSellerParser:
         try:
             logging.info("🛍️ Ищем кнопку 'Магазин'...")
 
-            # ОСНОВНЫЕ СЕЛЕКТОРЫ ИЗ ТВОЕГО HTML
+            # ОСНОВНЫЕ СЕЛЕКТОРЫ
             shop_selectors = [
                 "div.b5_4_4-a0[title='Магазин']",  # По title
                 "div.b5_4_4-b0[title='Магазин']",  # По title внутреннего элемента
@@ -617,14 +617,7 @@ class OzonSellerParser:
         data = {}
 
         try:
-            # 1. Название магазина (в заголовке модалки)
-            try:
-                title_element = self.driver.find_element(By.XPATH, "//span[@class='tsHeadline600Medium']")
-                data['Название'] = title_element.text.strip()
-            except:
-                data['Название'] = ''
-
-            # 2. Извлекаем данные из таблицы (Заказы, Работает с Ozon, Рейтинг и т.д.)
+            # 1. Извлекаем данные из таблицы (Заказы, Работает с Ozon, Рейтинг и т.д.)
             cell_selectors = [
                 "//div[contains(@class, 'b35_3_10-a9')]//span",  # Названия параметров
             ]
@@ -655,7 +648,7 @@ class OzonSellerParser:
                 except Exception as e:
                     continue
 
-            # 3. Юридическая информация (ОГРН, адрес и т.д.)
+            # 2. Юридическая информация (ОГРН, адрес и т.д.)
             try:
                 legal_text_elements = self.driver.find_elements(
                     By.XPATH, "//div[contains(@class, 'bq03_0_2-a')]//span[contains(@class, 'tsBody400Small')]"
@@ -725,168 +718,59 @@ class OzonSellerParser:
             logging.warning(f"⚠️ Не удалось закрыть модальное окно: {e}")
 
     def extract_shop_info(self):
-        """Извлечение информации со страницы магазина"""
+        """Извлечение ТОЛЬКО названия магазина с главной страницы"""
         try:
             data = {}
 
-            # Ожидаем загрузки контента
-            time.sleep(random.uniform(3, 5))
-
-            # Название магазина
+            #ПОИСК НАЗВАНИЯ МАГАЗИНА
             try:
-                name_selectors = [
-                    # Основной селектор из твоего HTML
-                    ".bq03_0_2-a.bq03_0_2-a4.bq03_0_2-a5.h5n_19 span.tsHeadline600Large",
-                    ".tsHeadline600Large",  # Резервный селектор
-                    "h1",
-                    ".seller-name",
+                main_page_name_selectors = [
+                    "h1.seller-name",
+                    ".seller-title",
                     "[data-widget='webSellerName']",
-                    "//h1[contains(@class, 'title')]"
+                    "//h1[contains(@class, 'seller')]",
+                    "//div[contains(@class, 'seller-header')]//h1",
+                    "//span[contains(@class, 'tsHeadline600Large')]",
+                    ".bq03_0_2-a.bq03_0_2-a4.bq03_0_2-a5.h5n_19 span.tsHeadline600Large",
+                    "//div[contains(@class, 'h5n_19')]//span"
                 ]
-                for selector in name_selectors:
+
+                shop_name_found = False
+                for selector in main_page_name_selectors:
                     try:
                         if selector.startswith("//"):
-                            element = self.driver.find_element(By.XPATH, selector)
+                            elements = self.driver.find_elements(By.XPATH, selector)
                         else:
-                            element = self.driver.find_element(By.CSS_SELECTOR, selector)
-                        if element.text.strip():
-                            data['Название'] = element.text.strip()
-                            logging.info(f"✅ Найдено название магазина: {data['Название']}")
+                            elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
+
+                        for element in elements:
+                            if element.is_displayed() and element.text.strip():
+                                shop_name = element.text.strip()
+                                if len(shop_name) > 2:
+                                    data['Название'] = shop_name
+                                    logging.info(f"✅ Название магазина найдено на главной странице: {data['Название']}")
+                                    shop_name_found = True
+                                    break
+
+                        if shop_name_found:
                             break
-                    except:
+
+                    except Exception as e:
                         continue
+
+                if not shop_name_found:
+                    logging.warning("⚠️ Не удалось извлечь название магазина с главной страницы")
+                    data['Название'] = ''
+
             except Exception as e:
-                logging.warning(f"⚠️ Не удалось извлечь название магазина: {e}")
+                logging.error(f"❌ Ошибка при извлечении названия магазина: {e}")
                 data['Название'] = ''
 
-            # Рейтинг
-            try:
-                rating_selectors = [
-                    "[data-widget*='rating']",
-                    ".seller-rating",
-                    ".rating-value",
-                    "//*[contains(@class, 'rating')]"
-                ]
-                for selector in rating_selectors:
-                    try:
-                        if selector.startswith("//"):
-                            element = self.driver.find_element(By.XPATH, selector)
-                        else:
-                            element = self.driver.find_element(By.CSS_SELECTOR, selector)
-                        if element.text.strip():
-                            data['Рейтинг'] = element.text.strip()
-                            break
-                    except:
-                        continue
-            except:
-                data['Рейтинг'] = ''
-
-            # Отзывы
-            try:
-                reviews_selectors = [
-                    "[data-widget*='reviews']",
-                    ".reviews-count",
-                    "//*[contains(., 'отзыв')]"
-                ]
-                for selector in reviews_selectors:
-                    try:
-                        if selector.startswith("//"):
-                            element = self.driver.find_element(By.XPATH, selector)
-                        else:
-                            element = self.driver.find_element(By.CSS_SELECTOR, selector)
-                        if element.text.strip():
-                            data['Отзывы'] = element.text.strip()
-                            break
-                    except:
-                        continue
-            except:
-                data['Отзывы'] = ''
-
-            # Заказы
-            try:
-                orders_selectors = [
-                    "[data-widget*='orders']",
-                    "//*[contains(., 'заказ')]"
-                ]
-                for selector in orders_selectors:
-                    try:
-                        if selector.startswith("//"):
-                            element = self.driver.find_element(By.XPATH, selector)
-                        else:
-                            element = self.driver.find_element(By.CSS_SELECTOR, selector)
-                        if element.text.strip():
-                            data['Заказы'] = element.text.strip()
-                            break
-                    except:
-                        continue
-            except:
-                data['Заказы'] = ''
-
-            # Описание
-            try:
-                desc_selectors = [
-                    ".seller-description",
-                    "[data-widget*='description']",
-                    "//*[contains(@class, 'description')]"
-                ]
-                for selector in desc_selectors:
-                    try:
-                        if selector.startswith("//"):
-                            element = self.driver.find_element(By.XPATH, selector)
-                        else:
-                            element = self.driver.find_element(By.CSS_SELECTOR, selector)
-                        if element.text.strip():
-                            data['Описание'] = element.text.strip()[:500]
-                            break
-                    except:
-                        continue
-            except:
-                data['Описание'] = ''
-
-            # Срок регистрации
-            try:
-                registration_selectors = [
-                    "//*[contains(., 'На Ozon с')]",
-                    "//*[contains(., 'регистрация')]",
-                    "//*[contains(., 'с ') and contains(., '20')]"
-                ]
-                for selector in registration_selectors:
-                    try:
-                        element = self.driver.find_element(By.XPATH, selector)
-                        if element.text.strip():
-                            data['Срок_регистрации'] = element.text.strip()
-                            break
-                    except:
-                        continue
-            except:
-                data['Срок_регистрации'] = ''
-
-            # Общее количество товаров
-            try:
-                total_products_selectors = [
-                    "//*[contains(., 'товар') and contains(., 'шт')]",
-                    "//*[contains(., 'Товары')]",
-                    "[data-widget*='totalProducts']"
-                ]
-                for selector in total_products_selectors:
-                    try:
-                        if selector.startswith("//"):
-                            element = self.driver.find_element(By.XPATH, selector)
-                        else:
-                            element = self.driver.find_element(By.CSS_SELECTOR, selector)
-                        if element.text.strip():
-                            data['Общее_кол-во_товаров'] = element.text.strip()
-                            break
-                    except:
-                        continue
-            except:
-                data['Общее_кол-во_товаров'] = ''
-
-            return data
+            return data  # Возвращаем название
 
         except Exception as e:
             logging.error(f"❌ Ошибка извлечения информации о магазине: {e}")
-            return {}
+            return {'Название': ''}
 
     def save_screenshot(self, seller_id, prefix=""):
         """Сохранение скриншота для отладки"""
@@ -911,18 +795,28 @@ class OzonSellerParser:
             self.driver.get(url)
             time.sleep(random.uniform(5, 8))
 
-            # 🔥 СОХРАНЯЕМ HTML СРАЗУ ПОСЛЕ ЗАГРУЗКИ
+            # СОХРАНЯЕМ HTML СРАЗУ ПОСЛЕ ЗАГРУЗКИ
             main_html_path = self.save_html_page(seller_id, "main_")
             html_paths.append(main_html_path)
 
-            # 🔥 СОХРАНЯЕМ СКРИНШОТ
+            # СОХРАНЯЕМ СКРИНШОТ
             self.save_screenshot(seller_id, "loaded_")
 
-            # Парсим товары с главной страницы
+            # ШАГ 1: ПЕРВОЕ ДЕЛО - ИЗВЛЕКАЕМ НАЗВАНИЕ С ГЛАВНОЙ СТРАНИЦЫ
+            try:
+                shop_name_data = self.extract_shop_info()  # Теперь этот метод возвращает ТОЛЬКО название
+                seller_data.update(shop_name_data)
+                logging.info(f"✅ Название магазина извлечено с главной страницы: {seller_data.get('Название', '')}")
+            except Exception as e:
+                logging.error(f"❌ Ошибка при извлечении названия магазина: {e}")
+                seller_data['Название'] = ''
+
+            # ШАГ 2: Парсим товары с главной страницы
             try:
                 products = self.extract_products_from_main_page()
                 seller_data['Кол-во_товаров_на_странице'] = len(products)
                 seller_data['Товары_JSON'] = json.dumps(products, ensure_ascii=False)
+                logging.info(f"✅ Спарсено товаров: {len(products)}")
             except Exception as e:
                 logging.error(f"❌ Ошибка при парсинге товаров: {e}")
                 # Сохраняем скриншот при ошибке парсинга товаров
@@ -930,15 +824,23 @@ class OzonSellerParser:
                 seller_data['Кол-во_товаров_на_странице'] = 0
                 seller_data['Товары_JSON'] = '[]'
 
-            # Пробуем открыть и спарсить модальное окно
+            # ШАГ 3: Парсим модальное окно для получения ВСЕХ остальных данных
             try:
                 if self.click_shop_button():
-                    # 🔥 СОХРАНЯЕМ HTML ПОСЛЕ КЛИКА НА МАГАЗИН
+                    # СОХРАНЯЕМ HTML ПОСЛЕ КЛИКА НА МАГАЗИН
                     shop_html_path = self.save_html_page(seller_id, "shop_")
                     html_paths.append(shop_html_path)
 
+                    # Извлекаем ВСЕ данные из модалки
                     legal_info = self.extract_legal_info_from_modal()
-                    seller_data.update(legal_info)
+
+                    # Убедимся, что название из модалки НЕ перезаписывает название с главной страницы
+                    if 'Название' in legal_info:
+                        logging.info(f"🔁 Название из модалки игнорируется, используем название с главной страницы")
+                        del legal_info['Название']  # Удаляем название из данных модалки
+
+                    seller_data.update(legal_info)  # Добавляем рейтинг, отзывы, юридическую информацию и т.д.
+                    logging.info(f"✅ Данные из модального окна извлечены: рейтинг, отзывы, юридическая информация")
                 else:
                     logging.warning(f"⚠️ Не удалось открыть модалку для продавца {seller_id}")
                     # Сохраняем скриншот при неудачном клике
@@ -947,17 +849,24 @@ class OzonSellerParser:
                 logging.error(f"❌ Ошибка при работе с модальным окном: {e}")
                 self.save_screenshot(seller_id, "modal_error_")
 
-            # 🔥 СОХРАНЯЕМ ВСЕ ПУТИ К HTML В ДАННЫЕ
+            # СОХРАНЯЕМ ВСЕ ПУТИ К HTML В ДАННЫЕ
             seller_data['Html_путь'] = "; ".join(html_paths)
 
-            # Сохраняем данные
+            # Логируем итоговые данные
+            logging.info(f"📊 Итоговые данные для продавца {seller_id}:")
+            logging.info(f"   - Название: {seller_data.get('Название', 'не найдено')}")
+            logging.info(f"   - Рейтинг: {seller_data.get('Рейтинг', 'не найден')}")
+            logging.info(f"   - Отзывы: {seller_data.get('Отзывы', 'не найдены')}")
+            logging.info(f"   - ОГРН: {seller_data.get('ОГРН', 'не найден')}")
+            logging.info(f"   - Товары: {seller_data.get('Кол-во_товаров_на_странице', 0)} шт")
+
             self.save_to_csv(seller_data)
             logging.info(f"✅ Успешно обработан продавец {seller_id}")
             return seller_data
 
         except Exception as e:
             logging.error(f"❌ Критическая ошибка парсинга продавца {seller_id}: {e}")
-            # 🔥 СОХРАНЯЕМ СКРИНШОТ И HTML ПРИ ЛЮБОЙ КРИТИЧЕСКОЙ ОШИБКЕ
+            # СОХРАНЯЕМ СКРИНШОТ И HTML ПРИ ЛЮБОЙ КРИТИЧЕСКОЙ ОШИБКЕ
             self.save_screenshot(seller_id, "critical_error_")
             error_html_path = self.save_html_page(seller_id, "error_")
             seller_data['Html_путь'] = error_html_path
@@ -988,6 +897,7 @@ class OzonSellerParser:
 
 def callback(ch, method, properties, body):
     seller_id = body.decode()
+
     logging.info(f"🎯 Получен ID продавца: {seller_id}")
 
     parser = None
@@ -998,7 +908,7 @@ def callback(ch, method, properties, body):
             logging.info(f"✅ Успешно обработан продавец {seller_id}")
         else:
             logging.warning(f"⚠️ Не удалось обработать продавца {seller_id}")
-        time.sleep(random.uniform(4, 5))
+        time.sleep(random.uniform(4, 7))
     except Exception as e:
         logging.error(f"❌ Критическая ошибка при обработке {seller_id}: {e}", exc_info=True)
     finally:

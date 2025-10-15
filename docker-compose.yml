@@ -1,9 +1,11 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    hostname: rabbitmq
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=+sbwt none +sbwtdcpu none +sbwtdio none
     ports:
       - "15672:15672"
     volumes:
@@ -14,11 +16,13 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+      start_period: 30s
     deploy:
       resources:
         limits:
-          memory: 2G
+          memory: 3G
           cpus: '2'
+    restart: unless-stopped
 
   queue_setup:
     build: .
@@ -26,12 +30,15 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USER=admin
       - RABBITMQ_PASS=${RABBITMQ_PASS}
-      - TOTAL_SELLERS=${TOTAL_SELLERS}
     command: python queue_setup.py
     depends_on:
       rabbitmq:
         condition: service_healthy
     restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 200M
 
   parser:
     build: .
@@ -53,6 +60,9 @@ services:
       resources:
         limits:
           memory: 800M
+          cpus: '0.5'
+        reservations:
+          memory: 500M
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -71,6 +81,10 @@ services:
     profiles:
       - merge
     command: python /app/merge_scripts/merge_csv.py
+    deploy:
+      resources:
+        limits:
+          memory: 500M
 
 volumes:
   rabbitmq_data:
