@@ -55,8 +55,6 @@ docker-compose up --scale parser=10
 ```docker compose --profile merge run merge-csv```
 
 <img width="1225" height="799" alt="Логирование в терминале" src="https://github.com/user-attachments/assets/39965383-e141-41de-b81b-9d74ee9056d6" />
-<img width="1899" height="762" alt="Пример - результат БЕЗ прокси" src="https://github.com/user-attachments/assets/5277771d-6e02-4159-a60e-a8e8d8
-<img width="782" height="529" alt="Скриншоты Selenium" src="https://github.com/user-attachments/assets/6af933fe-467f-4e19-ae44-68c755599f40" />
-f077b3" />
-<img width="1167" height="376" alt="Логирование в терминале - объединение CSV" src="https://github.com/user-attachments/assets/20921d8c-1618-4193-b3f2-3cea2493c0a9" />
-
+<img width="1899" height="762" alt="Пример - результат БЕЗ прокси" src="https://github.com/user-attachments/assets/7883a22b-3586-410a-8aa4-0f5b3b95d0fd" />
+<img width="782" height="529" alt="Скриншоты Selenium" src="https://github.com/user-attachments/assets/2a32771f-6e08-4090-9969-41b3aabad48f" />
+<img width="1167" height="376" alt="Логирование в терминале - объединение CSV" src="https://github.com/user-attachments/assets/ec38ae9a-3897-4455-84dc-3af881bf3759" />
