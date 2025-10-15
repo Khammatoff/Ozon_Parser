@@ -44,6 +44,7 @@ Chrome/Chromium - headless браузер для парсинга
 
 ```    
 git clone https://github.com/Khammatoff/Ozon_Parser
+Переименовать .env.local в .env
 cd Ozon_Parser
 Соберите и запустите контейнеры:
 docker-compose up --scale parser=10
