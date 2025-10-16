@@ -374,246 +374,238 @@ class OzonSellerParser:
             return ""
 
     def extract_products_from_main_page(self):
-        """Парсинг товаров с главной страницы"""
+        """Парсинг ТОЛЬКО товаров продавца из пагинатора, без лишних карточек"""
         try:
-            logging.info("🛒 Начинаем парсинг товаров с главной страницы...")
+            logging.info("🛒 Начинаем парсинг товаров продавца из пагинатора...")
 
-            # Ждем появления контейнера с товарами
+            # Ждем появления пагинатора с товарами продавца
             try:
                 WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located(
-                        (By.CSS_SELECTOR, "div[data-widget*='paginator'], div[data-widget*='tileGrid'], div.tile-root"))
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-widget='infiniteVirtualPaginator']"))
                 )
+                logging.info("✅ Найден пагинатор с товарами продавца")
             except:
-                logging.warning("⚠️ Не найден контейнер с товарами, возвращаем пустой список")
+                logging.warning("⚠️ Не найден пагинатор с товарами продавца, возвращаем пустой список")
                 return []
 
             products = []
 
-            # ⚡ ОСНОВНЫЕ СЕЛЕКТОРЫ ДЛЯ КАРТОЧЕК ТОВАРОВ ⚡
-            # Ищем карточки товаров по разным селекторам
-            product_selectors = [
-                "div.tile-root[data-index]",  # Основной селектор
-                "div[data-widget*='tileGrid'] div.tile-root",  # Внутри tileGrid
-                "#paginator div.tile-root",  # Внутри пагинатора
-                "div[data-index]"  # Любой элемент с data-index
-            ]
+            # ⚡ ПАРСИМ ТОЛЬКО КАРТОЧКИ ИЗ ПАГИНАТОРА ПРОДАВЦА ⚡
+            try:
+                # Находим основной контейнер пагинатора
+                paginator = self.driver.find_element(By.CSS_SELECTOR, "div[data-widget='infiniteVirtualPaginator']")
 
-            product_cards = []
-            for selector in product_selectors:
-                try:
-                    cards = self.driver.find_elements(By.CSS_SELECTOR, selector)
-                    if cards:
-                        product_cards = cards
-                        logging.info(f"📦 Найдено карточек товаров по селектору '{selector}': {len(cards)}")
-                        break
-                except:
-                    continue
+                # Ищем карточки товаров ВНУТРИ пагинатора
+                product_cards = paginator.find_elements(By.CSS_SELECTOR, "div.tile-root[data-index]")
 
-            if not product_cards:
-                logging.warning("⚠️ Не найдено карточек товаров")
-                return []
+                logging.info(f"📦 Найдено карточек товаров продавца в пагинаторе: {len(product_cards)}")
 
-            # Парсим только видимые карточки (первые 20 или все видимые)
-            visible_cards = [card for card in product_cards if card.is_displayed()][:20]
-            logging.info(f"🎯 Парсим видимых карточек: {len(visible_cards)}")
+                if not product_cards:
+                    logging.info("ℹ️ У продавца нет товаров в пагинаторе")
+                    return []
 
-            for card in visible_cards:
-                try:
-                    product_data = {}
+                # Парсим только видимые карточки (первые 20 или все видимые)
+                visible_cards = [card for card in product_cards if card.is_displayed()][:20]
+                logging.info(f"🎯 Парсим видимых карточек продавца: {len(visible_cards)}")
 
-                    # 1. НАЗВАНИЕ ТОВАРА
+                for card in visible_cards:
                     try:
-                        # Ищем название в основном месте
-                        name_selectors = [
-                            ".bq03_0_2-a span.tsBody500Medium",  # Основной селектор названия
-                            "a[href*='/product/'] .bq03_0_2-a span",  # В ссылке
-                            ".tsBody500Medium",  # По классу текста
-                            "span[class*='tsBody500']"  # Любой span с текстом
-                        ]
+                        product_data = {}
 
-                        for name_selector in name_selectors:
-                            try:
-                                name_elem = card.find_element(By.CSS_SELECTOR, name_selector)
-                                name_text = name_elem.text.strip()
-                                if name_text and len(name_text) > 5:  # Название должно быть достаточно длинным
-                                    product_data['name'] = name_text
-                                    break
-                            except:
-                                continue
+                        # 1. НАЗВАНИЕ ТОВАРА
+                        try:
+                            # Ищем название в основном месте
+                            name_selectors = [
+                                ".bq03_0_2-a span.tsBody500Medium",
+                                "a[href*='/product/'] .bq03_0_2-a span",
+                                ".tsBody500Medium",
+                                "span[class*='tsBody500']"
+                            ]
 
-                        if not product_data.get('name'):
+                            for name_selector in name_selectors:
+                                try:
+                                    name_elem = card.find_element(By.CSS_SELECTOR, name_selector)
+                                    name_text = name_elem.text.strip()
+                                    if name_text and len(name_text) > 5:
+                                        product_data['name'] = name_text
+                                        break
+                                except:
+                                    continue
+
+                            if not product_data.get('name'):
+                                product_data['name'] = ''
+
+                        except Exception as e:
+                            logging.debug(f"⚠️ Ошибка поиска названия: {e}")
                             product_data['name'] = ''
 
-                    except Exception as e:
-                        logging.debug(f"⚠️ Ошибка поиска названия: {e}")
-                        product_data['name'] = ''
+                        # 2. ЦЕНА ТОВАРА
+                        try:
+                            # Основные селекторы цены
+                            price_selectors = [
+                                ".c35_3_8-a1.tsHeadline500Medium",
+                                "span[class*='tsHeadline500Medium']",
+                                ".c35_3_8-a0 span",
+                                "//span[contains(text(), '₽')]"
+                            ]
 
-                    # 2. ЦЕНА ТОВАРА
-                    try:
-                        # Основные селекторы цены
-                        price_selectors = [
-                            ".c35_3_8-a1.tsHeadline500Medium",  # Основная цена
-                            "span[class*='tsHeadline500Medium']",  # Цена по классу
-                            ".c35_3_8-a0 span",  # В контейнере цены
-                            "//span[contains(text(), '₽')]"  # Любой элемент с символом рубля
-                        ]
+                            for price_selector in price_selectors:
+                                try:
+                                    if price_selector.startswith("//"):
+                                        price_elems = card.find_elements(By.XPATH, price_selector)
+                                    else:
+                                        price_elems = card.find_elements(By.CSS_SELECTOR, price_selector)
 
-                        for price_selector in price_selectors:
-                            try:
-                                if price_selector.startswith("//"):
-                                    price_elems = card.find_elements(By.XPATH, price_selector)
-                                else:
-                                    price_elems = card.find_elements(By.CSS_SELECTOR, price_selector)
-
-                                for elem in price_elems:
-                                    text = elem.text.strip()
-                                    # Ищем цену с символом рубля или просто цифры
-                                    if '₽' in text or (any(char.isdigit() for char in text) and len(text) <= 20):
-                                        product_data['price'] = text
+                                    for elem in price_elems:
+                                        text = elem.text.strip()
+                                        if '₽' in text or (any(char.isdigit() for char in text) and len(text) <= 20):
+                                            product_data['price'] = text
+                                            break
+                                    if product_data.get('price'):
                                         break
-                                if product_data.get('price'):
-                                    break
-                            except:
-                                continue
+                                except:
+                                    continue
 
-                        if not product_data.get('price'):
+                            if not product_data.get('price'):
+                                product_data['price'] = ''
+
+                        except Exception as e:
+                            logging.debug(f"⚠️ Ошибка поиска цены: {e}")
                             product_data['price'] = ''
 
-                    except Exception as e:
-                        logging.debug(f"⚠️ Ошибка поиска цены: {e}")
-                        product_data['price'] = ''
+                        # 3. ССЫЛКА НА ТОВАР
+                        try:
+                            link_selectors = [
+                                "a[href*='/product/']",
+                                ".tile-clickable-element[href*='/product/']"
+                            ]
 
-                    # 3. ССЫЛКА НА ТОВАР
-                    try:
-                        link_selectors = [
-                            "a[href*='/product/']",  # Основная ссылка на товар
-                            ".tile-clickable-element[href*='/product/']"  # Кликабельный элемент
-                        ]
+                            for link_selector in link_selectors:
+                                try:
+                                    link_elem = card.find_element(By.CSS_SELECTOR, link_selector)
+                                    href = link_elem.get_attribute('href')
+                                    if href and '/product/' in href:
+                                        product_data['link'] = href if href.startswith(
+                                            'http') else f"https://www.ozon.ru{href}"
+                                        break
+                                except:
+                                    continue
 
-                        for link_selector in link_selectors:
-                            try:
-                                link_elem = card.find_element(By.CSS_SELECTOR, link_selector)
-                                href = link_elem.get_attribute('href')
-                                if href and '/product/' in href:
-                                    product_data['link'] = href if href.startswith(
-                                        'http') else f"https://www.ozon.ru{href}"
-                                    break
-                            except:
-                                continue
+                            if not product_data.get('link'):
+                                product_data['link'] = ''
 
-                        if not product_data.get('link'):
+                        except Exception as e:
+                            logging.debug(f"⚠️ Ошибка поиска ссылки: {e}")
                             product_data['link'] = ''
 
-                    except Exception as e:
-                        logging.debug(f"⚠️ Ошибка поиска ссылки: {e}")
-                        product_data['link'] = ''
+                        # 4. ФОТО ТОВАРА
+                        try:
+                            img_selectors = [
+                                "img.i4s_24.b95_3_3-a",
+                                "img[loading='eager']",
+                                "img[src*='ozon.ru']",
+                                "img.b95_3_3-a"
+                            ]
 
-                    # 4. ФОТО ТОВАРА
-                    try:
-                        img_selectors = [
-                            "img.i4s_24.b95_3_3-a",
-                            "img[loading='eager']",
-                            "img[src*='ozon.ru']",
-                            "img.b95_3_3-a"
-                        ]
+                            for img_selector in img_selectors:
+                                try:
+                                    img_elem = card.find_element(By.CSS_SELECTOR, img_selector)
+                                    img_src = img_elem.get_attribute('src')
+                                    if img_src and 'ozon.ru' in img_src:
+                                        product_data['image'] = img_src
+                                        break
+                                except:
+                                    continue
 
-                        for img_selector in img_selectors:
-                            try:
-                                img_elem = card.find_element(By.CSS_SELECTOR, img_selector)
-                                img_src = img_elem.get_attribute('src')
-                                if img_src and 'ozon.ru' in img_src:
-                                    product_data['image'] = img_src
-                                    break
-                            except:
-                                continue
+                            if not product_data.get('image'):
+                                product_data['image'] = ''
 
-                        if not product_data.get('image'):
+                        except Exception as e:
+                            logging.debug(f"⚠️ Ошибка поиска фото: {e}")
                             product_data['image'] = ''
 
-                    except Exception as e:
-                        logging.debug(f"⚠️ Ошибка поиска фото: {e}")
-                        product_data['image'] = ''
+                        # 5. РЕЙТИНГ ТОВАРА
+                        try:
+                            rating_selectors = [
+                                ".p6b3_0_2-a4 span[style*='color:var(--textPremium)']",
+                                "span[style*='color:var(--textPremium)']",
+                                "//span[contains(@style, 'textPremium')]"
+                            ]
 
-                    # 5. РЕЙТИНГ ТОВАРА
-                    try:
-                        rating_selectors = [
-                            ".p6b3_0_2-a4 span[style*='color:var(--textPremium)']",  # Рейтинг
-                            "span[style*='color:var(--textPremium)']",  # По цвету
-                            "//span[contains(@style, 'textPremium')]"  # XPath по стилю
-                        ]
+                            for rating_selector in rating_selectors:
+                                try:
+                                    if rating_selector.startswith("//"):
+                                        rating_elems = card.find_elements(By.XPATH, rating_selector)
+                                    else:
+                                        rating_elems = card.find_elements(By.CSS_SELECTOR, rating_selector)
 
-                        for rating_selector in rating_selectors:
-                            try:
-                                if rating_selector.startswith("//"):
-                                    rating_elems = card.find_elements(By.XPATH, rating_selector)
-                                else:
-                                    rating_elems = card.find_elements(By.CSS_SELECTOR, rating_selector)
-
-                                for elem in rating_elems:
-                                    text = elem.text.strip()
-                                    # Проверяем, что это рейтинг (число с точкой или просто число)
-                                    if text and ('.' in text or text.replace('.', '').isdigit()):
-                                        product_data['rating'] = text
+                                    for elem in rating_elems:
+                                        text = elem.text.strip()
+                                        if text and ('.' in text or text.replace('.', '').isdigit()):
+                                            product_data['rating'] = text
+                                            break
+                                    if product_data.get('rating'):
                                         break
-                                if product_data.get('rating'):
-                                    break
-                            except:
-                                continue
+                                except:
+                                    continue
 
-                        if not product_data.get('rating'):
+                            if not product_data.get('rating'):
+                                product_data['rating'] = ''
+
+                        except Exception as e:
+                            logging.debug(f"⚠️ Ошибка поиска рейтинга: {e}")
                             product_data['rating'] = ''
 
-                    except Exception as e:
-                        logging.debug(f"⚠️ Ошибка поиска рейтинга: {e}")
-                        product_data['rating'] = ''
+                        # 6. КОЛИЧЕСТВО ОТЗЫВОВ
+                        try:
+                            reviews_selectors = [
+                                ".p6b3_0_2-a4 span[style*='color:var(--textSecondary)']",
+                                "span[style*='color:var(--textSecondary)']",
+                                "//span[contains(text(), 'отзыв')]"
+                            ]
 
-                    # 6. КОЛИЧЕСТВО ОТЗЫВОВ
-                    try:
-                        reviews_selectors = [
-                            ".p6b3_0_2-a4 span[style*='color:var(--textSecondary)']",  # Отзывы
-                            "span[style*='color:var(--textSecondary)']",  # По цвету
-                            "//span[contains(text(), 'отзыв')]"  # По тексту
-                        ]
+                            for reviews_selector in reviews_selectors:
+                                try:
+                                    if reviews_selector.startswith("//"):
+                                        reviews_elems = card.find_elements(By.XPATH, reviews_selector)
+                                    else:
+                                        reviews_elems = card.find_elements(By.CSS_SELECTOR, reviews_selector)
 
-                        for reviews_selector in reviews_selectors:
-                            try:
-                                if reviews_selector.startswith("//"):
-                                    reviews_elems = card.find_elements(By.XPATH, reviews_selector)
-                                else:
-                                    reviews_elems = card.find_elements(By.CSS_SELECTOR, reviews_selector)
-
-                                for elem in reviews_elems:
-                                    text = elem.text.strip()
-                                    if 'отзыв' in text.lower():
-                                        product_data['reviews_count'] = text
+                                    for elem in reviews_elems:
+                                        text = elem.text.strip()
+                                        if 'отзыв' in text.lower():
+                                            product_data['reviews_count'] = text
+                                            break
+                                    if product_data.get('reviews_count'):
                                         break
-                                if product_data.get('reviews_count'):
-                                    break
-                            except:
-                                continue
+                                except:
+                                    continue
 
-                        if not product_data.get('reviews_count'):
+                            if not product_data.get('reviews_count'):
+                                product_data['reviews_count'] = ''
+
+                        except Exception as e:
+                            logging.debug(f"⚠️ Ошибка поиска отзывов: {e}")
                             product_data['reviews_count'] = ''
 
+                        # Добавляем товар только если есть название
+                        if product_data.get('name'):
+                            products.append(product_data)
+                            logging.debug(f"✅ Добавлен товар продавца: {product_data['name'][:50]}...")
+
                     except Exception as e:
-                        logging.debug(f"⚠️ Ошибка поиска отзывов: {e}")
-                        product_data['reviews_count'] = ''
+                        logging.debug(f"⚠️ Ошибка парсинга карточки товара продавца: {e}")
+                        continue
 
-                    # Добавляем товар только если есть название
-                    if product_data.get('name'):
-                        products.append(product_data)
-                        logging.debug(f"✅ Добавлен товар: {product_data['name'][:50]}...")
+                logging.info(f"✅ Успешно спарсено товаров продавца: {len(products)}")
+                return products
 
-                except Exception as e:
-                    logging.debug(f"⚠️ Ошибка парсинга карточки товара: {e}")
-                    continue
-
-            logging.info(f"✅ Успешно спарсено товаров: {len(products)}")
-            return products
+            except Exception as e:
+                logging.error(f"❌ Ошибка при парсинке товаров из пагинатора: {str(e)}")
+                return []
 
         except Exception as e:
-            logging.error(f"❌ Ошибка при парсинге товаров: {str(e)}")
+            logging.error(f"❌ Общая ошибка при парсинге товаров продавца: {str(e)}")
             return []
 
     def click_shop_button(self) -> bool:
