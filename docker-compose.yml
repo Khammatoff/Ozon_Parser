@@ -1,91 +1,50 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    hostname: rabbitmq
     environment:
       - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
-      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=+sbwt none +sbwtdcpu none +sbwtdio none
+      - RABBITMQ_DEFAULT_PASS=password
     ports:
+      - "5672:5672"
       - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
     healthcheck:
-      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
       interval: 10s
-      timeout: 10s
+      timeout: 5s
       retries: 5
-      start_period: 30s
-    deploy:
-      resources:
-        limits:
-          memory: 3G
-          cpus: '2'
-    restart: unless-stopped
 
   queue_setup:
     build: .
+    command: python queue_setup.py
     environment:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USER=admin
-      - RABBITMQ_PASS=${RABBITMQ_PASS}
-    command: python queue_setup.py
+      - RABBITMQ_PASS=password
+      - START_SELLER_ID=1
+      - END_SELLER_ID=30000
     depends_on:
       rabbitmq:
         condition: service_healthy
-    restart: on-failure
-    deploy:
-      resources:
-        limits:
-          memory: 200M
+    restart: "no"
 
   parser:
     build: .
+    command: python parser.py
     environment:
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_USER=admin
-      - RABBITMQ_PASS=${RABBITMQ_PASS}
-      - USE_PROXIES=${USE_PROXIES}
-      - PROXY_LIST=${PROXY_LIST}
-      - PROXY_ROTATION_COUNT=${PROXY_ROTATION_COUNT:-5}
-      - PROXY_ROTATION_TIMEOUT=${PROXY_ROTATION_TIMEOUT:-30}
+      - RABBITMQ_PASS=password
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
       - ./screenshots:/app/screenshots
       - ./html:/app/html
-      - webdriver_cache:/root/.wdm
-    deploy:
-      resources:
-        limits:
-          memory: 800M
-          cpus: '0.5'
-        reservations:
-          memory: 500M
     depends_on:
-      rabbitmq:
-        condition: service_healthy
+      queue_setup:
+        condition: service_completed_successfully
     restart: unless-stopped
-
-  merge-csv:
-    build: .
-    environment:
-      - RABBITMQ_HOST=rabbitmq
-      - RABBITMQ_USER=admin
-      - RABBITMQ_PASS=${RABBITMQ_PASS}
-    volumes:
-      - ./data:/app/data
-      - ./logs:/app/logs
-      - ./merge_scripts:/app/merge_scripts
-    profiles:
-      - merge
-    command: python /app/merge_scripts/merge_csv.py
-    deploy:
-      resources:
-        limits:
-          memory: 500M
 
 volumes:
   rabbitmq_data:
-  webdriver_cache:
