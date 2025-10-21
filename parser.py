@@ -96,11 +96,11 @@ class OzonSellerParser:
     def take_screenshot(self, prefix=""):
         """Сохранение скриншота с автоматической нумерацией"""
         try:
-            self.screenshot_counter += 1
-            screenshot_path = f"/app/screenshots/{self.instance_id}_{self.screenshot_counter:03d}_{prefix}_{int(time.time())}.png"
-            self.driver.save_screenshot(screenshot_path)
-            logging.info(f"📸 Сохранен скриншот: {screenshot_path}")
-            return screenshot_path
+            #self.screenshot_counter += 1
+            #screenshot_path = f"/app/screenshots/{self.instance_id}_{self.screenshot_counter:03d}_{prefix}_{int(time.time())}.png"
+            #self.driver.save_screenshot(screenshot_path)
+            #logging.info(f"📸 Сохранен скриншот: {screenshot_path}")
+            return "" # screenshot_path
         except Exception as e:
             logging.warning(f"⚠️ Не удалось сохранить скриншот: {e}")
             return ""
@@ -612,7 +612,7 @@ class OzonSellerParser:
         """Клик по кнопке 'Магазин' на главной странице - УПРОЩЕННАЯ ВЕРСИЯ"""
         try:
             logging.info("🛍️ Ищем кнопку 'Магазин'...")
-            self.take_screenshot("before_shop_button")
+            #self.take_screenshot("before_shop_button")
 
             # Основные селекторы для кнопки "Магазин"
             shop_selectors = [
@@ -641,7 +641,7 @@ class OzonSellerParser:
 
                             # Ждем открытия модалки
                             time.sleep(3)
-                            self.take_screenshot("after_shop_click")
+                            #self.take_screenshot("after_shop_click")
 
                             # Проверяем, открылась ли модалка
                             if self.check_modal_opened():
@@ -706,7 +706,7 @@ class OzonSellerParser:
                 logging.warning("⚠️ Не удалось дождаться загрузки модального окна")
                 return data
 
-            self.take_screenshot("modal_content")
+            #self.take_screenshot("modal_content")
 
             # 1. Парсим метрики магазина
             metrics_data = self.extract_metrics_from_modal()
@@ -859,7 +859,7 @@ class OzonSellerParser:
         """Закрытие модального окна - УПРОЩЕННАЯ ВЕРСИЯ"""
         try:
             logging.info("🔒 Закрываем модальное окно...")
-            self.take_screenshot("before_modal_close")
+            #self.take_screenshot("before_modal_close")
 
             # Основные селекторы для закрытия
             close_selectors = [
@@ -880,7 +880,7 @@ class OzonSellerParser:
                         if btn.is_displayed() and btn.is_enabled():
                             self.driver.execute_script("arguments[0].click();", btn)
                             time.sleep(2)
-                            self.take_screenshot("after_modal_close")
+                            #self.take_screenshot("after_modal_close")
                             logging.info("✅ Модальное окно закрыто")
                             return True
                 except:
@@ -969,7 +969,7 @@ class OzonSellerParser:
         while attempt <= max_attempts:
             try:
                 logging.info(f"🚀 Попытка {attempt}/{max_attempts} для продавца {seller_id}")
-                self.take_screenshot(f"start_attempt_{attempt}")
+                #self.take_screenshot(f"start_attempt_{attempt}")
 
                 # Загрузка страницы
                 if not self.load_seller_page(url, attempt):
@@ -1042,7 +1042,7 @@ class OzonSellerParser:
             # Сохраняем основную HTML страницу
             main_html_path = self.save_html_page(seller_id, "main_")
             html_paths.append(main_html_path)
-            self.take_screenshot("page_loaded")
+            #self.take_screenshot("page_loaded")
 
             # 1. Название магазина
             if not self.parse_shop_name(seller_data):
@@ -1147,7 +1147,7 @@ class OzonSellerParser:
 
     def handle_critical_error(self, seller_id, attempt, max_attempts):
         """Обработка критических ошибок"""
-        self.take_screenshot(f"critical_error_attempt_{attempt}")
+        #self.take_screenshot(f"critical_error_attempt_{attempt}")
 
         if attempt < max_attempts:
             delay = random.uniform(15, 25)
@@ -1197,7 +1197,7 @@ class OzonSellerParser:
                     elements = self.driver.find_elements(By.XPATH, indicator)
                     if elements:
                         logging.warning(f"🛑 Обнаружена блокировка: {indicator}")
-                        self.take_screenshot("blocked")
+                        #self.take_screenshot("blocked")
                         return True
                 except:
                     continue
