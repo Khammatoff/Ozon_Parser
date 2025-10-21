@@ -64,7 +64,7 @@ docker-compose up --scale parser=10
 ```docker compose --profile merge run merge-csv```
 
 
-
+## 📸 Скриншоты 
 <img width="1281" height="894" alt="555" src="https://github.com/user-attachments/assets/75226213-25c3-49c7-98e8-7abd7bdcc2bc" />
 
 
