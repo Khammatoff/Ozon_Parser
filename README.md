@@ -46,13 +46,13 @@ Chrome/Chromium - headless браузер для парсинга
 git clone https://github.com/Khammatoff/Ozon_Parser
 cd Ozon_Parser
 Создайте в корне .env:
-RABBITMQ_USER=admin
+"RABBITMQ_USER=admin
 RABBITMQ_PASS=password
 START_SELLER_ID=1
 END_SELLER_ID=30000
 USE_PROXIES=true
 PROXY_ROTATION_COUNT=
-PROXY_LIST=
+PROXY_LIST="
 
 Соберите и запустите контейнеры:
 docker-compose up --scale parser=10
@@ -63,7 +63,12 @@ docker-compose up --scale parser=10
 
 ```docker compose --profile merge run merge-csv```
 
+
+
 <img width="1281" height="894" alt="555" src="https://github.com/user-attachments/assets/75226213-25c3-49c7-98e8-7abd7bdcc2bc" />
 
-<img width="1235" height="604" alt="556" src="https://github.com/user-attachments/assets/10c13800-4774-41f4-a6e0-8bc2e51974b7" />
+
+<img width="1143" height="201" alt="556" src="https://github.com/user-attachments/assets/98ca2bf0-6053-47d8-bdd7-8de097ab6fda" />
+
+
 
