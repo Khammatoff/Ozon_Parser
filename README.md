@@ -62,3 +62,8 @@ docker-compose up --scale parser=10
 Для объединения CSV (после завершения работы):
 
 ```docker compose --profile merge run merge-csv```
+
+<img width="1281" height="894" alt="555" src="https://github.com/user-attachments/assets/75226213-25c3-49c7-98e8-7abd7bdcc2bc" />
+
+<img width="1235" height="604" alt="556" src="https://github.com/user-attachments/assets/10c13800-4774-41f4-a6e0-8bc2e51974b7" />
+
